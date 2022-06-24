@@ -34,3 +34,7 @@ Aku mau isi review / galeri, isi foto hasil2 riasan customer
 Untuk waktu pembayaran DP nya 2x24 jam
 Kalau gak di bayarkan brrti hangus
 Harus booking ulang
+
+###WAKTU
+
+- admin bisa mengelola waktu hias
