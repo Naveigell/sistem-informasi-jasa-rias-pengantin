@@ -57,6 +57,13 @@ $routes->group('admin', function ($routes) {
     $routes->put('products/(:num)', 'Admin\ProductController::update/$1', ["as" => "admin.products.update"]);
     $routes->post('products', 'Admin\ProductController::store', ["as" => "admin.products.store"]);
     $routes->delete('products/(:num)', 'Admin\ProductController::destroy/$1', ["as" => "admin.products.destroy"]);
+
+    $routes->get('wedding-times', 'Admin\WeddingTimeController::index', ["as" => "admin.wedding-times.index"]);
+    $routes->get('wedding-times/create', 'Admin\WeddingTimeController::create', ["as" => "admin.wedding-times.create"]);
+    $routes->get('wedding-times/(:num)/edit', 'Admin\WeddingTimeController::edit/$1', ["as" => "admin.wedding-times.edit"]);
+    $routes->put('wedding-times/(:num)', 'Admin\WeddingTimeController::update/$1', ["as" => "admin.wedding-times.update"]);
+    $routes->post('wedding-times', 'Admin\WeddingTimeController::store', ["as" => "admin.wedding-times.store"]);
+    $routes->delete('wedding-times/(:num)', 'Admin\WeddingTimeController::destroy/$1', ["as" => "admin.wedding-times.destroy"]);
 });
 
 /*
