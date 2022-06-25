@@ -37,4 +37,7 @@ Harus booking ulang
 
 ###WAKTU
 
-- admin bisa mengelola waktu hias
+- admin bisa mengelola waktu hias \
+1. (01:00)
+2. (03:30)
+3. (05:30)
