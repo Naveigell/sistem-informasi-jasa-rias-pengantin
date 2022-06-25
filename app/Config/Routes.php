@@ -35,7 +35,15 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
 $routes->group('admin', function ($routes) {
+    $routes->get('products/(:num)/subs', 'Admin\SubProductController::index/$1', ["as" => "admin.sub-products.index"]);
+    $routes->post('products/(:num)/subs', 'Admin\SubProductController::store/$1', ["as" => "admin.sub-products.store"]);
+    $routes->get('products/(:num)/subs/create', 'Admin\SubProductController::create/$1', ["as" => "admin.sub-products.create"]);
+    $routes->get('products/(:num)/subs/(:num)/edit', 'Admin\SubProductController::edit/$1/$2', ["as" => "admin.sub-products.edit"]);
+    $routes->put('products/(:num)/subs/(:num)', 'Admin\SubProductController::update/$1/$2', ["as" => "admin.sub-products.update"]);
+    $routes->delete('products/(:num)/subs/(:num)', 'Admin\SubProductController::destroy/$1/$2', ["as" => "admin.sub-products.destroy"]);
+
      $routes->get('products', 'Admin\ProductController::index', ["as" => "admin.products.index"]);
      $routes->get('products/create', 'Admin\ProductController::create', ["as" => "admin.products.create"]);
      $routes->get('products/(:num)/edit', 'Admin\ProductController::edit/$1', ["as" => "admin.products.edit"]);
