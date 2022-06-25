@@ -37,6 +37,13 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 $routes->group('admin', function ($routes) {
+    $routes->get('products/(:num)/subs/(:num)/medias', 'Admin\ProductMediaController::index/$1/$2', ["as" => "admin.product-medias.index"]);
+    $routes->post('products/(:num)/subs/(:num)/medias', 'Admin\ProductMediaController::store/$1/$2', ["as" => "admin.product-medias.store"]);
+    $routes->get('products/(:num)/subs/(:num)/medias/create', 'Admin\ProductMediaController::create/$1/$2', ["as" => "admin.product-medias.create"]);
+    $routes->get('products/(:num)/subs/(:num)/medias/(:num)/edit', 'Admin\ProductMediaController::edit/$1/$2/$3', ["as" => "admin.product-medias.edit"]);
+    $routes->put('products/(:num)/subs/(:num)/medias/(:num)', 'Admin\ProductMediaController::update/$1/$2/$3', ["as" => "admin.product-medias.update"]);
+    $routes->delete('products/(:num)/subs/(:num)/medias/(:num)', 'Admin\ProductMediaController::destroy/$1/$2/$3', ["as" => "admin.product-medias.destroy"]);
+
     $routes->get('products/(:num)/subs', 'Admin\SubProductController::index/$1', ["as" => "admin.sub-products.index"]);
     $routes->post('products/(:num)/subs', 'Admin\SubProductController::store/$1', ["as" => "admin.sub-products.store"]);
     $routes->get('products/(:num)/subs/create', 'Admin\SubProductController::create/$1', ["as" => "admin.sub-products.create"]);
@@ -44,12 +51,12 @@ $routes->group('admin', function ($routes) {
     $routes->put('products/(:num)/subs/(:num)', 'Admin\SubProductController::update/$1/$2', ["as" => "admin.sub-products.update"]);
     $routes->delete('products/(:num)/subs/(:num)', 'Admin\SubProductController::destroy/$1/$2', ["as" => "admin.sub-products.destroy"]);
 
-     $routes->get('products', 'Admin\ProductController::index', ["as" => "admin.products.index"]);
-     $routes->get('products/create', 'Admin\ProductController::create', ["as" => "admin.products.create"]);
-     $routes->get('products/(:num)/edit', 'Admin\ProductController::edit/$1', ["as" => "admin.products.edit"]);
-     $routes->put('products/(:num)', 'Admin\ProductController::update/$1', ["as" => "admin.products.update"]);
-     $routes->post('products', 'Admin\ProductController::store', ["as" => "admin.products.store"]);
-     $routes->delete('products/(:num)', 'Admin\ProductController::destroy/$1', ["as" => "admin.products.destroy"]);
+    $routes->get('products', 'Admin\ProductController::index', ["as" => "admin.products.index"]);
+    $routes->get('products/create', 'Admin\ProductController::create', ["as" => "admin.products.create"]);
+    $routes->get('products/(:num)/edit', 'Admin\ProductController::edit/$1', ["as" => "admin.products.edit"]);
+    $routes->put('products/(:num)', 'Admin\ProductController::update/$1', ["as" => "admin.products.update"]);
+    $routes->post('products', 'Admin\ProductController::store', ["as" => "admin.products.store"]);
+    $routes->delete('products/(:num)', 'Admin\ProductController::destroy/$1', ["as" => "admin.products.destroy"]);
 });
 
 /*

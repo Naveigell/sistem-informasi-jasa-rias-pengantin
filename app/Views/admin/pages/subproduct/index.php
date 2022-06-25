@@ -38,7 +38,7 @@
                             <td><?= $subProduct['description']; ?></td>
                             <td class="col-2">
                                 <a href="<?= route_to('admin.sub-products.edit', $productId, $subProduct['id']); ?>" class="btn btn-warning"><i class="fa fa-pen"></i></a>
-                                <a href="<?= route_to('admin.sub-products.index', $subProduct['id']); ?>" class="btn btn-info"><i class="fa fa-image"></i></a>
+                                <a href="<?= route_to('admin.product-medias.index', $productId, $subProduct['id']); ?>" class="btn btn-info"><i class="fa fa-image"></i></a>
                                 <button data-target="#deleteModal" data-url="<?= route_to('admin.sub-products.destroy', $productId, $subProduct['id']); ?>" data-toggle="modal" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
