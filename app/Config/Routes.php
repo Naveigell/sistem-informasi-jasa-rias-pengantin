@@ -35,7 +35,14 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->group('admin', function ($routes) {
+     $routes->get('products', 'Admin\ProductController::index', ["as" => "admin.products.index"]);
+     $routes->get('products/create', 'Admin\ProductController::create', ["as" => "admin.products.create"]);
+     $routes->get('products/(:num)/edit', 'Admin\ProductController::edit/$1', ["as" => "admin.products.edit"]);
+     $routes->put('products/(:num)', 'Admin\ProductController::update/$1', ["as" => "admin.products.update"]);
+     $routes->post('products', 'Admin\ProductController::store', ["as" => "admin.products.store"]);
+     $routes->delete('products/(:num)', 'Admin\ProductController::destroy/$1', ["as" => "admin.products.destroy"]);
+});
 
 /*
  * --------------------------------------------------------------------

@@ -66,12 +66,16 @@ class SubProductSeeder extends Seeder
             ],
         ];
 
-        foreach ($subProducts as $productSlug => $subProduct) {
-            $product = (new Product())->where('slug', $productSlug)->first();
+        foreach (array_keys($subProducts) as $slug) {
+            $product = (new Product())->where('slug', $slug)->first();
 
-            (new SubProduct())->insert(array_merge($subProducts, [
-                "product_id" => $product['id'],
-            ]));
+            foreach ($subProducts[$slug] as $subProduct) {
+
+                (new SubProduct())->insert(array_merge($subProduct, [
+                    "product_id"  => $product['id'],
+                    "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis ex est. Nam finibus elit eu ultricies fringilla. Fusce dictum magna lacinia enim consectetur, nec faucibus dui interdum. Aenean vel odio congue, scelerisque enim tincidunt, aliquam ex. Sed suscipit viverra metus, id volutpat erat aliquet a. Curabitur nec hendrerit ex. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque bibendum in turpis vitae lobortis. Curabitur imperdiet nulla non tortor posuere interdum. Mauris tincidunt, ex sit amet efficitur ultrices, velit libero tincidunt tortor, quis laoreet libero turpis a sapien. Integer vitae auctor elit.",
+                ]));
+            }
         }
     }
 }
