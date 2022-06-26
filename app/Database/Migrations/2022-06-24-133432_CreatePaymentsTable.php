@@ -15,7 +15,7 @@ class CreatePaymentsTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'customer_id' => [
+            'booking_id' => [
                 'type' => 'BIGINT',
                 'constraint' => 20,
                 'unsigned' => true,
@@ -42,11 +42,11 @@ class CreatePaymentsTable extends Migration
             ],
             'status' => [
                 'type' => 'VARCHAR',
-                'constraint' => 10,
+                'constraint' => 50,
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('customer_id', 'customers', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('booking_id', 'bookings', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('payments');
     }
 

@@ -37,6 +37,11 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 $routes->group('admin', function ($routes) {
+
+    $routes->get('bookings', 'Admin\BookingController::index', ["as" => "admin.bookings.index"]);
+    $routes->get('bookings/(:num)', 'Admin\BookingController::show/$1', ["as" => "admin.bookings.show"]);
+    $routes->put('bookings/(:num)', 'Admin\BookingController::update/$1', ["as" => "admin.bookings.update"]);
+
     $routes->get('products/(:num)/subs/(:num)/medias', 'Admin\ProductMediaController::index/$1/$2', ["as" => "admin.product-medias.index"]);
     $routes->post('products/(:num)/subs/(:num)/medias', 'Admin\ProductMediaController::store/$1/$2', ["as" => "admin.product-medias.store"]);
     $routes->get('products/(:num)/subs/(:num)/medias/create', 'Admin\ProductMediaController::create/$1/$2', ["as" => "admin.product-medias.create"]);

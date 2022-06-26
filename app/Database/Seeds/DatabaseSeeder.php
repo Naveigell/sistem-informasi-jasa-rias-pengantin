@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $seeder->call('WeddingTimeSeeder');
         $seeder->call('ProductSeeder');
         $seeder->call('SubProductSeeder');
+        $seeder->call('BookingSeeder');
     }
 }
