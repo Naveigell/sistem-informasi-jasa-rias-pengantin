@@ -71,6 +71,8 @@ $routes->group('admin', function ($routes) {
     $routes->delete('wedding-times/(:num)', 'Admin\WeddingTimeController::destroy/$1', ["as" => "admin.wedding-times.destroy"]);
 });
 
+$routes->get('/', 'Member\HomeController::index', ["as" => "member.home"]);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
