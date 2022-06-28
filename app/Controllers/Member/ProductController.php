@@ -5,12 +5,15 @@ namespace App\Controllers\Member;
 use App\Controllers\BaseController;
 use App\Models\Booking;
 use App\Models\Product;
+use App\Models\SubProduct;
 use App\Models\WeddingTime;
 
-class HomeController extends BaseController
+class ProductController extends BaseController
 {
-    public function index()
+    public function index($productId, $subProductId)
     {
+        $product            = (new Product())->where('id', $productId)->first();
+        $subProduct         = (new SubProduct())->where('id', $subProductId)->where('product_id', $productId)->first();
         $weddingTimes       = (new WeddingTime())->findAll();
         $products           = (new Product())->findAll();
         $available          = false;
@@ -31,6 +34,6 @@ class HomeController extends BaseController
             $hasQueryParameters = true;
         }
 
-        return view('member/pages/home/index', compact('weddingTimes', 'products', 'available', 'hasQueryParameters'));
+        return view('member/pages/product/index', compact('subProduct', 'product', 'weddingTimes', 'products', 'available', 'hasQueryParameters'));
     }
 }

@@ -1,5 +1,27 @@
 <?= $this->extend('layouts/member/member') ?>
 
+<?= $this->section('content-style') ?>
+<style>
+    .booking-form form .book-now {
+        display: block;
+        font-size: 14px;
+        text-transform: uppercase;
+        text-align: center;
+        border: 1px solid #dfa974;
+        border-radius: 2px;
+        align-self: center;
+        color: #fff;
+        font-weight: 500;
+        background: #dfa974;
+        width: 100%;
+        margin-top: 18px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+</style>
+
+<?= $this->endSection() ?>
+
 <?= $this->section('content-body') ?>
 
 <?php
@@ -7,6 +29,7 @@
  * @var array $weddingTimes
  * @var array $products
  * @var boolean $available
+ * @var boolean $hasQueryParameters
  */
 ?>
 
@@ -41,7 +64,7 @@
                             <div class="alert alert-success">
                                 Tanggal Dapat Dibooking
                             </div>
-                        <?php else: ?>
+                        <?php elseif ($hasQueryParameters): ?>
                             <div class="alert alert-danger">
                                 Tanggal Sudah Terbooking
                             </div>
@@ -85,6 +108,10 @@
                             </div>
 
                             <button type="submit">Check Ketersediaan</button>
+
+                            <?php if ($available): ?>
+                                <a href="<?= route_to('member.product.detail', $_GET['product_id'], $_GET['sub_product_id']) . '?' . http_build_query($_GET); ?>" class="book-now">Pesan Sekarang!</a>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>
