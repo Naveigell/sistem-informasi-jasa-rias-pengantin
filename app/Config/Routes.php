@@ -73,7 +73,8 @@ $routes->group('admin', function ($routes) {
 
 $routes->get('/', 'Member\HomeController::index', ["as" => "member.home"]);
 $routes->get('/product/(:num)/sub/(:num)', 'Member\ProductController::index/$1/$2', ["as" => "member.product.detail"]);
-$routes->post('/product/(:num)/sub/(:num)', 'Member\BookingController::store/$1/$2', ["as" => "member.booking.store"]);
+$routes->get('/product/(:num)/sub/(:num)/booking', 'Member\BookingController::index/$1/$2', ["as" => "member.booking.index"]);
+$routes->post('/product/(:num)/sub/(:num)/booking', 'Member\BookingController::store/$1/$2', ["as" => "member.booking.store"]);
 
 /*
  * --------------------------------------------------------------------

@@ -188,8 +188,7 @@
 <!--                                        <i class="icon_star-half_alt"></i>-->
 <!--                                    </div>-->
                                     <?php if ($available): ?>
-                                        <form action="<?= route_to('member.booking.store', $product['id'], $subProduct['id']); ?>" method="post">
-                                            <?= csrf_field(); ?>
+                                        <form action="<?= route_to('member.booking.index', $product['id'], $subProduct['id']); ?>">
                                             <?php if (@!empty($_GET['wedding_date'])): ?>
                                                 <input type="date" name="wedding_date" hidden readonly value="<?= date('Y-m-d', strtotime($_GET['wedding_date'])); ?>">
                                             <?php endif; ?>
