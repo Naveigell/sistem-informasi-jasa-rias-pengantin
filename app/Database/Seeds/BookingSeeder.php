@@ -19,9 +19,11 @@ class BookingSeeder extends Seeder
         $statuses      = [Booking::STATUS_WAITING_PAYMENT, Booking::STATUS_DOWN_PAYMENT, Booking::STATUS_PAID_OFF];
         $merchantBanks = ['BRI', 'BCA', 'Mandiri'];
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 8; $i++) {
             $user       = $users[array_rand($users)];
             $subProduct = $subProducts[array_rand($subProducts)];
+
+            $status = $statuses[array_rand($statuses)];
 
             $booking = [
                 "user_id"          => $user['id'],
@@ -34,7 +36,7 @@ class BookingSeeder extends Seeder
                 "wedding_date"     => date('Y-m-d'),
                 "wedding_time_id"  => $weddingTimes[array_rand($weddingTimes)]['id'],
                 "pre_wedding_date" => date('Y-m-d'),
-                "payment_status"   => $statuses[array_rand($statuses)],
+                "payment_status"   => $status,
             ];
 
             $bookingId = (new Booking())->insert($booking);
@@ -46,7 +48,7 @@ class BookingSeeder extends Seeder
                 "sender_account_number" => mt_rand(11111111, 99999999),
                 "sender_name"           => $user['name'],
                 "merchant_bank"         => $merchantBanks[array_rand($merchantBanks)],
-                "status"                => $statuses[array_rand($statuses)],
+                "status"                => $status,
             ];
 
             (new Payment())->insert($payment);

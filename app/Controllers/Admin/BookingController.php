@@ -10,14 +10,14 @@ class BookingController extends BaseController
 {
     public function index()
     {
-        $bookings = (new Booking())->joinWeddingTime()->joinProduct()->joinSubProduct()->findAll();
+        $bookings = (new Booking())->select('wedding_times.*, products.*, sub_products.*, bookings.id AS booking_id')->orderBy('booking_id')->joinWeddingTime()->joinProduct()->joinSubProduct()->findAll();
 
         return view('admin/pages/booking/index', compact('bookings'));
     }
 
     public function show($bookingId)
     {
-        $booking = (new Booking())->joinWeddingTime()->joinProduct()->joinSubProduct()->first();
+        $booking = (new Booking())->where('bookings.id', $bookingId)->select('wedding_times.*, products.*, sub_products.*, bookings.id AS booking_id')->orderBy('booking_id')->joinWeddingTime()->joinProduct()->joinSubProduct()->first();
         $payment = (new Payment())->where('booking_id', $bookingId)->first();
 
         return view('admin/pages/booking/form', compact('booking', 'payment'));
@@ -38,6 +38,7 @@ class BookingController extends BaseController
         $payment = (new Payment())->where('booking_id', $bookingId)->first();
 
         (new Payment())->update($payment['id'], $this->request->getVar());
+        (new Booking())->update($bookingId, ["payment_status" => $this->request->getVar('status')]);
 
         return redirect()->route('admin.bookings.index')->withInput()->with('success', 'Pembayaran berhasil diubah');
     }

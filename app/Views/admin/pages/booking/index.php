@@ -39,7 +39,7 @@
                             <td><?= date('d F Y', strtotime($booking['pre_wedding_date'])); ?></td>
                             <td><?= render_payment_status($booking['payment_status']); ?></td>
                             <td>
-                                <a href="<?= route_to('admin.bookings.show', $booking['id']); ?>" class="btn btn-warning"><i class="fa fa-pen"></i></a>
+                                <a href="<?= route_to('admin.bookings.show', $booking['booking_id']); ?>" class="btn btn-warning"><i class="fa fa-pen"></i></a>
                                 <a target="_blank" href="https://api.whatsapp.com/send?phone=<?= $booking['phone']; ?>" class="btn btn-success"><i class="fa fa-phone"></i></a>
                             </td>
                         </tr>

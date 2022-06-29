@@ -72,6 +72,9 @@ $routes->group('admin', function ($routes) {
 });
 
 $routes->get('/', 'Member\HomeController::index', ["as" => "member.home"]);
+$routes->get('/payments', 'Member\PaymentController::index', ["as" => "member.payments.index"]);
+$routes->get('/product/(:num)/sub/(:num)/booking/(:num)/payment', 'Member\PaymentController::edit/$1/$2/$3', ["as" => "member.payments.edit"]);
+$routes->post('/product/(:num)/sub/(:num)/booking/(:num)/payment', 'Member\PaymentController::store/$1/$2/$3', ["as" => "member.payments.store"]);
 $routes->get('/product/(:num)/sub/(:num)', 'Member\ProductController::index/$1/$2', ["as" => "member.product.detail"]);
 $routes->get('/product/(:num)/sub/(:num)/booking', 'Member\BookingController::index/$1/$2', ["as" => "member.booking.index"]);
 $routes->post('/product/(:num)/sub/(:num)/booking', 'Member\BookingController::store/$1/$2', ["as" => "member.booking.store"]);

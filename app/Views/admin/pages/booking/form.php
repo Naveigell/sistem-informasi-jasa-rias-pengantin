@@ -16,6 +16,8 @@
             <h4 class="d-inline">Form Booking</h4>
         </div>
         <div class="card-body">
+            <?= render_payment_status($booking['payment_status']); ?>
+            <br><br>
             <div class="row">
                 <div class="col-6">
                     <h6>Jasa Yang Dipilih</h6>
@@ -70,46 +72,50 @@
                     <br>
                     <div class="form-group">
                         <label>Bank Pengirim</label>
-                        <input type="text" disabled value="<?= $payment['sender_bank']; ?>" class="form-control">
+                        <input type="text" disabled value="<?= $payment ? $payment['sender_bank'] : '-'; ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Nomor Rekening Pengirim</label>
-                        <input type="text" disabled value="<?= $payment['sender_account_number']; ?>" class="form-control">
+                        <input type="text" disabled value="<?= $payment ? $payment['sender_account_number'] : '-'; ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Nama Pengirim</label>
-                        <input type="text" disabled value="<?= $payment['sender_name']; ?>" class="form-control">
+                        <input type="text" disabled value="<?= $payment ? $payment['sender_name'] : '-'; ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Bank Tujuan</label>
-                        <input type="text" disabled value="<?= $payment['merchant_bank']; ?>" class="form-control">
+                        <input type="text" disabled value="<?= $payment ? $payment['merchant_bank'] : '-'; ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Status</label>
-                        <input type="text" disabled value="<?= ucwords(str_replace('_', ' ', $payment['status'])); ?>" class="form-control">
+                        <input type="text" disabled value="<?= ucwords(str_replace('_', ' ', $payment ? $payment['status'] : '-')); ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Bukti Pembayaran</label>
                         <div class="" style="border: 1px dashed #5f5c5c; border-radius: 5px;">
-                            <img width="100%" src="<?= base_url('/uploads/images/payments/' . $payment['proof']); ?>" alt="">
+                            <img width="100%" src="<?= $payment ? base_url('/uploads/images/payments/' . $payment['proof']) : ''; ?>" alt="">
                         </div>
                     </div>
-                    <form action="<?= route_to('admin.bookings.update', $booking['id']); ?>" method="post">
-                        <input type="hidden" name="_method" value="put">
-                        <div class="form-group">
-                            <label for="">Status Pembayaran</label>
-                            <select name="status" id="" class="form-control">
-                                <?php foreach ([\App\Models\Payment::STATUS_WAITING_PAYMENT,
-                                                   \App\Models\Payment::STATUS_DOWN_PAYMENT,
-                                                   \App\Models\Payment::STATUS_PAID_OFF] as $status): ?>
-                                    <option <?= $status === $payment['status'] ? 'selected' : ''; ?> value="<?= $status; ?>"><?= ucwords(str_replace('_', ' ', $status)); ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
+
+                    <?php if ($payment): ?>
+
+                        <form action="<?= route_to('admin.bookings.update', $payment['booking_id']); ?>" method="post">
+                            <input type="hidden" name="_method" value="put">
+                            <div class="form-group">
+                                <label for="">Status Pembayaran</label>
+                                <select name="status" id="" class="form-control">
+                                    <?php foreach ([\App\Models\Payment::STATUS_WAITING_PAYMENT,
+                                                       \App\Models\Payment::STATUS_DOWN_PAYMENT,
+                                                       \App\Models\Payment::STATUS_PAID_OFF] as $status): ?>
+                                        <option <?= $status === $payment['status'] ? 'selected' : ''; ?> value="<?= $status; ?>"><?= ucwords(str_replace('_', ' ', $status)); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

@@ -14,8 +14,8 @@
             <li><a class="nav-link" href="<?= route_to('admin.wedding-times.index'); ?>"><i class="fa fa-clock"></i> <span>Jam Rias</span></a></li>
             <li class="menu-header">Pemesanan</li>
             <li><a class="nav-link" href="<?= route_to('admin.bookings.index'); ?>"><i class="fa fa-link"></i> <span>Booking</span></a></li>
-            <li class="menu-header">Saran</li>
-            <li><a class="nav-link" href="<?= route_to('admin.suggestions.index'); ?>"><i class="fa fa-envelope"></i> <span>Saran</span></a></li>
+<!--            <li class="menu-header">Saran</li>-->
+<!--            <li><a class="nav-link" href="--><?//= route_to('admin.suggestions.index'); ?><!--"><i class="fa fa-envelope"></i> <span>Saran</span></a></li>-->
         </ul>
     </aside>
 </div>
