@@ -13,14 +13,14 @@ class PaymentController extends BaseController
 {
     public function index()
     {
-        $bookings = (new Booking())->where('user_id', 1)->findAll();
+        $bookings = (new Booking())->where('user_id', session()->get('user')->id)->findAll();
 
         return view('member/pages/payment/index', compact('bookings'));
     }
 
     public function edit($productId, $subProductId, $bookingId)
     {
-        $booking     = (new Booking())->where('product_id', $productId)->where('sub_product_id', $subProductId)->where('user_id', 1)->first();
+        $booking     = (new Booking())->where('product_id', $productId)->where('sub_product_id', $subProductId)->where('user_id', session()->get('user')->id)->first();
         $product     = (new Product())->where('id', $productId)->first();
         $subProduct  = (new SubProduct())->where('id', $subProductId)->where('product_id', $productId)->first();
         $weddingTime = (new WeddingTime())->where('id', $booking['wedding_time_id'])->first();
@@ -52,6 +52,7 @@ class PaymentController extends BaseController
             "payment_status" => Booking::STATUS_DOWN_PAYMENT,
         ]);
 
+        return redirect()->to(route_to('member.payments.edit', $productId, $subProductId, $bookingId))->with('success', 'Pembayaran berhasil dilakukan');
     }
 
     public function validator()

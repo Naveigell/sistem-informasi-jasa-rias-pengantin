@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="<?= route_to('member.home'); ?>">
                             <img src="<?= base_url('member/img/logo.png'); ?>" alt="">
                         </a>
                     </div>
@@ -17,8 +17,8 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
-                                <li><a href="./pages.html">Jasa</a>
+                                <li class="active"><a href="<?= route_to('member.home'); ?>">Home</a></li>
+                                <li><a>Jasa</a>
                                     <ul class="dropdown">
                                         <?php foreach ($products as $product): ?>
                                             <li><a><?= $product['name']; ?></a></li>
@@ -34,8 +34,14 @@
                                         <?php endforeach; ?>
                                     </ul>
                                 </li>
-                                <li><a href="<?= route_to('member.payments.index'); ?>">Pemesanan & Pembayaran</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <?php if (session()->get('hasLoggedIn')): ?>
+                                    <li><a href="<?= route_to('member.payments.index'); ?>">Pemesanan & Pembayaran</a></li>
+                                <?php endif; ?>
+                                <?php if (session()->has('hasLoggedIn') && session()->get('user')->id): ?>
+                                    <li><a href="<?= route_to('logout'); ?>">Logout</a></li>
+                                <?php else: ?>
+                                    <li><a href="<?= route_to('member.auth.login.index'); ?>">Login</a></li>
+                                <?php endif; ?>
                             </ul>
                         </nav>
                     </div>

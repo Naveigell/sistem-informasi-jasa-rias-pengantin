@@ -36,7 +36,10 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->group('admin', function ($routes) {
+$routes->get('/admin/login', 'Auth\AdminAuthController::index', ["as" => "admin.auth.login.index"]);
+$routes->post('/admin/login', 'Auth\AdminAuthController::store', ["as" => "admin.auth.login.store"]);
+
+$routes->group('admin', ['filter' => 'adminfilter'], function ($routes) {
 
     $routes->get('bookings', 'Admin\BookingController::index', ["as" => "admin.bookings.index"]);
     $routes->get('bookings/(:num)', 'Admin\BookingController::show/$1', ["as" => "admin.bookings.show"]);
@@ -78,6 +81,12 @@ $routes->post('/product/(:num)/sub/(:num)/booking/(:num)/payment', 'Member\Payme
 $routes->get('/product/(:num)/sub/(:num)', 'Member\ProductController::index/$1/$2', ["as" => "member.product.detail"]);
 $routes->get('/product/(:num)/sub/(:num)/booking', 'Member\BookingController::index/$1/$2', ["as" => "member.booking.index"]);
 $routes->post('/product/(:num)/sub/(:num)/booking', 'Member\BookingController::store/$1/$2', ["as" => "member.booking.store"]);
+$routes->get('/login', 'Auth\MemberAuthController::login', ["as" => "member.auth.login.index"]);
+$routes->post('/login', 'Auth\MemberAuthController::store', ["as" => "member.auth.login.store"]);
+
+$routes->get('/register', 'Auth\MemberAuthController::register', ["as" => "member.auth.register.index"]);
+$routes->post('/register', 'Auth\MemberAuthController::doRegister', ["as" => "member.auth.register.store"]);
+$routes->get('/logout', 'Auth\AuthController::logout', ["as" => "logout"]);
 
 /*
  * --------------------------------------------------------------------

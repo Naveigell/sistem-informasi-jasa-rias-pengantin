@@ -54,7 +54,7 @@ class BookingController extends BaseController
         }
 
         (new Booking())->insert(array_merge($this->request->getVar(), [
-            "user_id"          => 1,
+            "user_id"          => session()->get('user')->id,
             "payment_status"   => Payment::STATUS_WAITING_PAYMENT,
             "pre_wedding_date" => date('Y-m-d', strtotime($this->request->getVar('pre_wedding_date'))),
         ]));
