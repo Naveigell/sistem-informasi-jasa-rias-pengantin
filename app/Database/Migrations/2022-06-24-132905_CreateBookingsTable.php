@@ -60,6 +60,14 @@ class CreateBookingsTable extends Migration
             'payment_status' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
+            ],
+            'is_expired' => [
+                'type' => 'INT',
+                'unsigned' => true,
+                'default' => 0,
+            ],
+            'expired_at' => [
+                'type' => 'DATETIME',
             ]
         ]);
         $this->forge->addKey('id', true);

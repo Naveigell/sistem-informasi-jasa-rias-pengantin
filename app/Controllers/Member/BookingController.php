@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Product;
 use App\Models\SubProduct;
 use App\Models\WeddingTime;
+use CodeIgniter\I18n\Time;
 
 class BookingController extends BaseController
 {
@@ -31,7 +32,8 @@ class BookingController extends BaseController
             !empty($subProductId)) {
 
             $available = (new Booking())->where('product_id', $productId)->where('DATE(wedding_date)', date('Y-m-d', strtotime($weddingDate)))
-                    ->where('wedding_time_id', $weddingTimeId)->where('sub_product_id', $subProductId)->countAllResults() <= 0;
+                                        ->where('is_expired', 0)
+                                        ->where('wedding_time_id', $weddingTimeId)->where('sub_product_id', $subProductId)->countAllResults() <= 0;
             $hasQueryParameters = true;
         }
 
@@ -57,6 +59,7 @@ class BookingController extends BaseController
             "user_id"          => session()->get('user')->id,
             "payment_status"   => Payment::STATUS_WAITING_PAYMENT,
             "pre_wedding_date" => date('Y-m-d', strtotime($this->request->getVar('pre_wedding_date'))),
+            "expired_at"       => Time::now()->addDays(2)->toDateTimeString(),
         ]));
 
         return redirect()->to(route_to('member.home'))->with('success', 'Pemesanan berhasil dilakukan');

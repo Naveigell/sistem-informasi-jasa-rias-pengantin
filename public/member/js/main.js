@@ -97,8 +97,11 @@
 		Date Picker
 	--------------------*/
     $(".date-input").datepicker({
-        dateFormat: 'dd-mm-yy'
+        dateFormat: 'dd-mm-yy',
+        minDate: new Date(),
     });
+
+    $(".date-input").attr('autocomplete', 'off');
 
     /*------------------
 		Nice Select

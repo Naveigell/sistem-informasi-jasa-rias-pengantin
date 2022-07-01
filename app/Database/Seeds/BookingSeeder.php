@@ -8,6 +8,7 @@ use App\Models\SubProduct;
 use App\Models\User;
 use App\Models\WeddingTime;
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class BookingSeeder extends Seeder
 {
@@ -33,10 +34,11 @@ class BookingSeeder extends Seeder
                 "address"          => "Jln Raya Test",
                 "phone"            => '08' . mt_rand(11111111, 99999999),
                 "identity_card"    => mt_rand(11111111, 99999999),
-                "wedding_date"     => date('Y-m-d'),
+                "wedding_date"     => Time::now()->addDays(round(rand(10, 30)))->toDateTimeString(),
                 "wedding_time_id"  => $weddingTimes[array_rand($weddingTimes)]['id'],
-                "pre_wedding_date" => date('Y-m-d'),
+                "pre_wedding_date" => Time::now()->addDays(round(rand(10, 30)))->toDateTimeString(),
                 "payment_status"   => $status,
+                "expired_at"       => Time::now()->subDays(2)->toDateTimeString(),
             ];
 
             $bookingId = (new Booking())->insert($booking);

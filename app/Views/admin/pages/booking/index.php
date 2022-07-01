@@ -23,6 +23,7 @@
                         <th>Tanggal Rias</th>
                         <th>Tanggal Prewedding</th>
                         <th>Status Pembayaran</th>
+                        <th>Expired</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -38,6 +39,13 @@
                             <td><?= date('d F Y', strtotime($booking['wedding_date'])); ?> - <?= date('H:i', strtotime($booking['wedding_time'])); ?></td>
                             <td><?= date('d F Y', strtotime($booking['pre_wedding_date'])); ?></td>
                             <td><?= render_payment_status($booking['payment_status']); ?></td>
+                            <td>
+                                <?php if ($booking['is_expired']): ?>
+                                    <span class="badge-success badge">Iya</span>
+                                <?php else: ?>
+                                    -
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <a href="<?= route_to('admin.bookings.show', $booking['booking_id']); ?>" class="btn btn-warning"><i class="fa fa-pen"></i></a>
                                 <a target="_blank" href="https://api.whatsapp.com/send?phone=<?= $booking['phone']; ?>" class="btn btn-success"><i class="fa fa-phone"></i></a>

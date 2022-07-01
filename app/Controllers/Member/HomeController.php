@@ -27,6 +27,7 @@ class HomeController extends BaseController
             !empty($subProductId)) {
 
             $available = (new Booking())->where('product_id', $productId)->where('DATE(wedding_date)', date('Y-m-d', strtotime($weddingDate)))
+                                        ->where('is_expired', 0)
                                         ->where('wedding_time_id', $weddingTimeId)->where('sub_product_id', $subProductId)->countAllResults() <= 0;
             $hasQueryParameters = true;
         }

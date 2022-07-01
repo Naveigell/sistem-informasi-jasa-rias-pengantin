@@ -6,6 +6,20 @@
  * @var array $bookings
  */
 ?>
+    <style>
+        .danger-btn {
+            display: inline-block;
+            font-size: 13px;
+            color: #cd0303;
+            text-transform: uppercase;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .danger-btn:hover {
+            color: #cd0303;
+        }
+    </style>
     <div class="breadcrumb-section">
         <div class="container">
             <div class="row">
@@ -40,14 +54,23 @@
                             <div class="ri-text">
                                 <h4><?= $product['name']; ?> - <?= $subProduct['name']; ?></h4>
                                 <h3 style="font-size: 18px;">Rp. <?= number_format($subProduct['price'], 0, ',', '.'); ?><span></span></h3>
-                                <?php if (!$payment): ?>
-                                    <span class="badge badge-danger">Belum Bayar</span>
-                                <?php elseif ($payment['status'] === 'down_payment'): ?>
-                                    <span class="badge badge-primary">Sudah di DP</span>
+
+                                <?php if ($booking['is_expired']): ?>
+                                    <span class="badge badge-dark">Expired</span> <br><br>
+
+                                    <a href="#" class="danger-btn">* Silakan Booking Ulang</a>
                                 <?php else: ?>
-                                    <span class="badge badge-success">Pembayaran full</span>
-                                <?php endif; ?> <br><br>
-                                <a href="<?= route_to('member.payments.edit', $product['id'], $subProduct['id'], $booking['id']); ?>" class="primary-btn">Lihat Pemesanan</a>
+
+                                    <?php if (!$payment): ?>
+                                        <span class="badge badge-danger">Belum Bayar</span>
+                                    <?php elseif ($payment['status'] === 'down_payment'): ?>
+                                        <span class="badge badge-primary">Sudah di DP</span>
+                                    <?php else: ?>
+                                        <span class="badge badge-success">Pembayaran full</span>
+                                    <?php endif; ?> <br><br>
+
+                                    <a href="<?= route_to('member.payments.edit', $product['id'], $subProduct['id'], $booking['id']); ?>" class="primary-btn">Lihat Pemesanan</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

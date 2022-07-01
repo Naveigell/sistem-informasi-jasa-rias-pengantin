@@ -2,11 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Models\Booking;
+use App\Models\Payment;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -48,5 +51,17 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+
+        $nonExpiredBookings = (new Booking())->where('is_expired', 0)->where('DATE(expired_at) <=', Time::now()->toDateString())->findAll();
+
+        foreach ($nonExpiredBookings as $booking) {
+            $payment = (new Payment())->where('booking_id', $booking['id'])->first();
+
+            if (!$payment || $payment['status'] === Payment::STATUS_WAITING_PAYMENT) {
+                (new Booking())->update($booking['id'], [
+                    "is_expired" => 1,
+                ]);
+            }
+        }
     }
 }
