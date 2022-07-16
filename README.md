@@ -41,3 +41,13 @@ Harus booking ulang
 1. (01:00)
 2. (03:30)
 3. (05:30)
+
+----------------------------------------------------
+
+1. Bisa gak di tampilan home itu menunjukkan garis besar dari usaha nyam.misalnya lagi ada diskon (isi foto payas agung diskon 50%) ya 1-3 diskon lah, biodata salon di bawah nya kalau di scroll
+2. Kalau mau lihat detail dan booking silahkan login
+3. Saat login langsung muncul jasanya
+4. Kalauiu mau booking, langsung klik jasa yg di pilih, isi data
+5. Setelah isi data arahkan ke pembayaran, langsung isi upload bukti, biar otomatis, namanya juga sistem.
+6. Buatkan dimana data pembayaran yg sudah di bayar dan blm, dan urutannya bagaimana cara tau mana yg terbaru, dari atas ke bawah, kanan ke kiri, atau nomor
+   Kayak di shoopee

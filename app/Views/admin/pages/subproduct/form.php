@@ -50,6 +50,18 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label>Diskon</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                Rp.
+                            </div>
+                        </div>
+                        <input name="discount" type="text" class="form-control nominal" value="<?= @$subProduct ? $subProduct['discount'] : ''; ?>">
+                    </div>
+                    <small class="text-dark">* Isikan diskon jika ingin memberikan diskon (optional)</small>
+                </div>
+                <div class="form-group">
                     <label>Deskripsi</label>
                     <textarea name="description" class="form-control" id="editor" cols="30" rows="10"><?= @$subProduct ? $subProduct['description'] : ''; ?></textarea>
                 </div>

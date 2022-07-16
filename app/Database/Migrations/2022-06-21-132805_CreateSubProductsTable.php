@@ -33,6 +33,12 @@ class CreateSubProductsTable extends Migration
                 'constraint' => 100,
                 'unsigned' => true,
             ],
+            'discount' => [
+                'type' => 'INT',
+                'constraint' => 100,
+                'unsigned' => true,
+                'null' => true,
+            ],
             'description' => [
                 'type' => 'TEXT',
             ],

@@ -188,7 +188,14 @@
                         <div class="rd-title">
                             <h3><?= $product['name']; ?> - <?= $subProduct['name']; ?></h3>
                         </div>
-                        <h2 style="font-size: 25px;">Rp. <?= number_format($subProduct['price'], 0, ',', '.'); ?><span></span></h2>
+                        <h2 style="font-size: 25px;">
+                            <?php if($subProduct['discount']): ?>
+                                <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
+                                <b><?= format_currency($subProduct['discount']); ?></b>
+                            <?php else: ?>
+                                <?= format_currency($subProduct['price']); ?>
+                            <?php endif; ?>
+                        </h2>
                         <p class="f-para"><?= $subProduct['description']; ?></p>
                         </p>
                     </div>

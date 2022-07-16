@@ -34,7 +34,14 @@
                     foreach ($subProducts as $subProduct): ?>
                         <tr>
                             <td><?= $subProduct['name']; ?></td>
-                            <td class="col-1"><?= format_currency($subProduct['price']); ?></td>
+                            <?php if($subProduct['discount']): ?>
+                                <td class="col-1">
+                                    <strike><?= format_currency($subProduct['price']); ?></strike> <br>
+                                    <span><?= format_currency($subProduct['discount']); ?></span>
+                                </td>
+                            <?php else: ?>
+                                <td class="col-1"><?= format_currency($subProduct['price']); ?></td>
+                            <?php endif; ?>
                             <td><?= $subProduct['description']; ?></td>
                             <td class="col-2">
                                 <a href="<?= route_to('admin.sub-products.edit', $productId, $subProduct['id']); ?>" class="btn btn-warning"><i class="fa fa-pen"></i></a>

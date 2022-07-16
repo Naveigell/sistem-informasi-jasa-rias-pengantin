@@ -28,11 +28,13 @@ class SubProductSeeder extends Seeder
                     "name"  => "Reguler",
                     "slug"  => "reguler",
                     "price" => "500000",
+                    "discount" => "30000",
                 ],
                 [
                     "name"  => "Exclusive",
                     "slug"  => "exclusive",
                     "price" => "1000000",
+                    "discount" => "400000",
                 ],
             ],
             "resepsi" => [

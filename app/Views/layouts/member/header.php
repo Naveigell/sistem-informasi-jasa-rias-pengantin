@@ -18,22 +18,25 @@
                         <nav class="mainmenu">
                             <ul>
                                 <li class="active"><a href="<?= route_to('member.home'); ?>">Home</a></li>
-                                <li><a>Jasa</a>
-                                    <ul class="dropdown">
-                                        <?php foreach ($products as $product): ?>
-                                            <li><a><?= $product['name']; ?></a></li>
+                                <?php if(session()->get('hasLoggedIn')): ?>
+                                    <li>
+                                        <a>Jasa</a>
+                                        <ul class="dropdown">
+                                            <?php foreach ($products as $product): ?>
+                                                <li><a><?= $product['name']; ?></a></li>
 
-                                            <?php
-                                                $subProducts = (new \App\Models\SubProduct())->where('product_id', $product['id'])->findAll();
-                                            ?>
+                                                <?php
+                                                    $subProducts = (new \App\Models\SubProduct())->where('product_id', $product['id'])->findAll();
+                                                ?>
 
-                                            <?php foreach ($subProducts as $subProduct): ?>
-                                                <li><a href="<?= route_to('member.product.detail', $product['id'], $subProduct['id']); ?>">&bull; &nbsp; <?= $subProduct['name']; ?></a></li>
+                                                <?php foreach ($subProducts as $subProduct): ?>
+                                                    <li><a href="<?= route_to('member.product.detail', $product['id'], $subProduct['id']); ?>">&bull; &nbsp; <?= $subProduct['name']; ?></a></li>
+                                                <?php endforeach; ?>
+
                                             <?php endforeach; ?>
-
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </li>
+                                        </ul>
+                                    </li>
+                                <?php endif; ?>
                                 <?php if (session()->get('hasLoggedIn')): ?>
                                     <li><a href="<?= route_to('member.payments.index'); ?>">Pemesanan & Pembayaran</a></li>
                                 <?php endif; ?>

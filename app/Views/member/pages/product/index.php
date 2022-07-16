@@ -187,30 +187,37 @@
 <!--                                        <i class="icon_star"></i>-->
 <!--                                        <i class="icon_star-half_alt"></i>-->
 <!--                                    </div>-->
-                                    <?php if ($available): ?>
-                                        <form action="<?= route_to('member.booking.index', $product['id'], $subProduct['id']); ?>">
-                                            <?php if (@!empty($_GET['wedding_date'])): ?>
-                                                <input type="date" name="wedding_date" hidden readonly value="<?= date('Y-m-d', strtotime($_GET['wedding_date'])); ?>">
-                                            <?php endif; ?>
-
-                                            <?php if (@!empty($_GET['wedding_time_id'])): ?>
-                                                <input type="text" name="wedding_time_id" hidden readonly value="<?= $_GET['wedding_time_id']; ?>">
-                                            <?php endif; ?>
-
-                                            <?php if (@!empty($_GET['product_id'])): ?>
-                                                <input type="text" name="product_id" hidden readonly value="<?= $_GET['product_id']; ?>">
-                                            <?php endif; ?>
-
-                                            <?php if (@!empty($_GET['sub_product_id'])): ?>
-                                                <input type="text" name="sub_product_id" hidden readonly value="<?= $_GET['sub_product_id']; ?>">
-                                            <?php endif; ?>
-
-                                            <button style="padding-left: 20px; padding-right: 20px;">Pesan Sekarang!</button>
-                                        </form>
-                                    <?php endif; ?>
+<!--                                    --><?php //if ($available): ?>
+<!--                                        <form action="--><?//= route_to('member.booking.index', $product['id'], $subProduct['id']); ?><!--">-->
+<!--                                            --><?php //if (@!empty($_GET['wedding_date'])): ?>
+<!--                                                <input type="date" name="wedding_date" hidden readonly value="--><?//= date('Y-m-d', strtotime($_GET['wedding_date'])); ?><!--">-->
+<!--                                            --><?php //endif; ?>
+<!---->
+<!--                                            --><?php //if (@!empty($_GET['wedding_time_id'])): ?>
+<!--                                                <input type="text" name="wedding_time_id" hidden readonly value="--><?//= $_GET['wedding_time_id']; ?><!--">-->
+<!--                                            --><?php //endif; ?>
+<!---->
+<!--                                            --><?php //if (@!empty($_GET['product_id'])): ?>
+<!--                                                <input type="text" name="product_id" hidden readonly value="--><?//= $_GET['product_id']; ?><!--">-->
+<!--                                            --><?php //endif; ?>
+<!---->
+<!--                                            --><?php //if (@!empty($_GET['sub_product_id'])): ?>
+<!--                                                <input type="text" name="sub_product_id" hidden readonly value="--><?//= $_GET['sub_product_id']; ?><!--">-->
+<!--                                            --><?php //endif; ?>
+<!---->
+<!--                                            <button style="padding-left: 20px; padding-right: 20px;">Pesan Sekarang!</button>-->
+<!--                                        </form>-->
+<!--                                    --><?php //endif; ?>
                                 </div>
                             </div>
-                            <h2 style="font-size: 25px;">Rp. <?= number_format($subProduct['price'], 0, ',', '.'); ?><span></span></h2>
+                            <h2 style="font-size: 25px;">
+                                <?php if($subProduct['discount']): ?>
+                                    <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
+                                    <b><?= format_currency($subProduct['discount']); ?></b>
+                                <?php else: ?>
+                                    <?= format_currency($subProduct['price']); ?>
+                                <?php endif; ?>
+                            </h2>
                             <p class="f-para"><?= $subProduct['description']; ?></p>
                             </p>
                         </div>
@@ -293,6 +300,84 @@
                             <button type="submit">Check Harga & Ketersediaan</button>
                         </form>
                     </div>
+                    <?php if($available): ?>
+                        <div class="room-booking booking-form mt-4">
+
+                            <hr>
+
+                            <?php
+                                $weddingTime = null;
+
+                                if (@$_GET['wedding_time_id']) {
+                                    $weddingTime = (new \App\Models\WeddingTime())->where('id', $_GET['wedding_time_id'])->first();
+                                }
+                            ?>
+
+                            <h3>Form Data Diri</h3>
+                            <?php if ($errors = session()->getFlashdata('errors')): ?>
+                                <div class="alert-danger alert">
+                                    <ul>
+                                        <?php foreach ($errors as $error): ?>
+                                            <li><?= $error; ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                            <form action="<?= route_to('member.booking.store', $_GET['product_id'], $_GET['sub_product_id']); ?>" id="form" method="post">
+                                <?= csrf_field(); ?>
+                                <div class="form-group">
+                                    <label for="">Nama</label>
+                                    <input class="form-control" name="name" type="text" value="<?= session()->get('user')->name; ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Alamat</label>
+                                    <input class="form-control" name="address" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">No Telp</label>
+                                    <input class="form-control" name="phone" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">NIK</label>
+                                    <input class="form-control" name="identity_card" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Tanggal Pernikahan</label>
+                                    <input class="form-control" name="wedding_date" readonly value="<?= @$_GET['wedding_date'] ? date('Y-m-d', strtotime($_GET['wedding_date'])) : ''; ?>" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Jam Rias</label>
+                                    <input class="form-control" name="wedding_time" readonly value="<?= $weddingTime ? date('H:i', strtotime($weddingTime['wedding_time'])) : ''; ?>" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Tanggal Prewedding</label>
+                                    <input class="form-control date-input" name="pre_wedding_date" type="text">
+                                </div>
+
+                                <?php if (@$_GET['wedding_time_id']): ?>
+                                    <input type="hidden" name="wedding_time_id" value="<?= $_GET['wedding_time_id']; ?>" readonly>
+                                <?php endif; ?>
+
+                                <?php if (@$_GET['product_id']): ?>
+                                    <input type="hidden" name="product_id" value="<?= $_GET['product_id']; ?>" readonly>
+                                <?php endif; ?>
+
+                                <?php if (@$_GET['sub_product_id']): ?>
+                                    <input type="hidden" name="sub_product_id" value="<?= $_GET['sub_product_id']; ?>" readonly>
+                                <?php endif; ?>
+
+                                <?php if ($available): ?>
+                                    <button type="submit">Pesan Sekarang!</button>
+                                <?php endif; ?>
+                            </form>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

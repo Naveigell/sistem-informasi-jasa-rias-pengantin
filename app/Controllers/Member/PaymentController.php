@@ -25,7 +25,7 @@ class PaymentController extends BaseController
         $subProduct  = (new SubProduct())->where('id', $subProductId)->where('product_id', $productId)->first();
         $weddingTime = (new WeddingTime())->where('id', $booking['wedding_time_id'])->first();
 
-        return view('member/pages/payment/form', compact('booking', 'product', 'subProduct', 'weddingTime'));
+        return view('member/pages/payment/form', compact('booking', 'product', 'subProduct', 'weddingTime', 'bookingId'));
     }
 
     public function store($productId, $subProductId, $bookingId)

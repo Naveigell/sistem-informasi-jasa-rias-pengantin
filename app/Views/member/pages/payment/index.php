@@ -53,7 +53,15 @@
                             <img src="<?= $media ? base_url('/uploads/images/products/' . $media['media']) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'; ?>" alt="">
                             <div class="ri-text">
                                 <h4><?= $product['name']; ?> - <?= $subProduct['name']; ?></h4>
-                                <h3 style="font-size: 18px;">Rp. <?= number_format($subProduct['price'], 0, ',', '.'); ?><span></span></h3>
+
+                                <h2 style="font-size: 25px;">
+                                    <?php if($subProduct['discount']): ?>
+                                        <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
+                                        <b><?= format_currency($subProduct['discount']); ?></b>
+                                    <?php else: ?>
+                                        <?= format_currency($subProduct['price']); ?>
+                                    <?php endif; ?>
+                                </h2>
 
                                 <?php if ($booking['is_expired']): ?>
                                     <span class="badge badge-dark">Expired</span> <br><br>
