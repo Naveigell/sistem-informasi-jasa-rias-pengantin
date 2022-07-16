@@ -5,6 +5,7 @@ namespace App\Controllers\Member;
 use App\Controllers\BaseController;
 use App\Models\Booking;
 use App\Models\Product;
+use App\Models\SubProduct;
 use App\Models\WeddingTime;
 
 class HomeController extends BaseController
@@ -32,6 +33,8 @@ class HomeController extends BaseController
             $hasQueryParameters = true;
         }
 
-        return view('member/pages/home/index', compact('weddingTimes', 'products', 'available', 'hasQueryParameters'));
+        $discountSubProducts = (new SubProduct())->where('discount IS NOT NULL', null, false)->limit(3)->findAll();
+
+        return view('member/pages/home/index', compact('weddingTimes', 'products', 'available', 'hasQueryParameters', 'discountSubProducts'));
     }
 }

@@ -47,6 +47,7 @@ class SubProductSeeder extends Seeder
                     "name"  => "Tipe 2",
                     "slug"  => "tipe-2",
                     "price" => "2000000",
+                    "discount" => "400000",
                 ],
             ],
             "prewedding" => [

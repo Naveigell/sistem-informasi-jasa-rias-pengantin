@@ -127,28 +127,34 @@
     <section class="aboutus-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="about-text">
-                        <div class="section-title">
-                            <span>About Us</span>
-                            <h2>Intercontinental LA <br />Westlake Hotel</h2>
-                        </div>
-                        <p class="f-para">Sona.com is a leading online accommodation site. We’re passionate about
-                            travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
-                            languages.</p>
-                        <p class="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
-                            apartment, guest house, or tree house, we’ve got you covered.</p>
-                        <a href="#" class="primary-btn about-btn">Read More</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="about-pic">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <img src="<?= base_url('member/img/about/about-1.jpg'); ?>" alt="">
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="<?= base_url('member/img/about/about-2.jpg'); ?>" alt="">
+                            <div class="row">
+                                <?php /** @var array $discountSubProducts */
+                                foreach($discountSubProducts as $subProduct): ?>
+
+                                    <?php
+                                        $product = (new \App\Models\Product())->where('id', $subProduct['product_id'])->first();
+                                        $media   = (new \App\Models\ProductMedia())->where('sub_product_id', $subProduct['id'])->first();
+                                    ?>
+
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="room-item">
+                                            <img src="<?= $media ? base_url('/uploads/images/products/' . $media['media']) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'; ?>" alt="">
+                                            <div class="ri-text">
+                                                <h4><?= $subProduct['name']; ?> - <?= $product['name']; ?></h4>
+
+                                                <h2 style="font-size: 25px;">
+                                                    <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
+                                                    <br>
+                                                    <b><?= format_currency($subProduct['discount']); ?></b>
+                                                    <span class="badge badge-danger"><?= calculate_discount($subProduct['price'], $subProduct['discount']); ?>%</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>

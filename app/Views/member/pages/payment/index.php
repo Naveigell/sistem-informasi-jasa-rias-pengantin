@@ -39,7 +39,7 @@
     <section class="rooms-section spad">
         <div class="container">
             <div class="row">
-                <?php foreach ($bookings as $booking): ?>
+                <?php foreach ($bookings as $index => $booking): ?>
 
                     <?php
                         $media      = (new \App\Models\ProductMedia())->where('sub_product_id', $booking['sub_product_id'])->first();
@@ -49,7 +49,10 @@
                     ?>
 
                     <div class="col-lg-4 col-md-6">
-                        <div class="room-item">
+                        <div class="room-item position-relative">
+                            <span class="position-absolute badge badge-danger" style="bottom: 10px; right: 10px; font-size: 14px;">
+                                <?= $index + 1; ?>
+                            </span>
                             <img src="<?= $media ? base_url('/uploads/images/products/' . $media['media']) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'; ?>" alt="">
                             <div class="ri-text">
                                 <h4><?= $product['name']; ?> - <?= $subProduct['name']; ?></h4>
@@ -57,6 +60,7 @@
                                 <h2 style="font-size: 25px;">
                                     <?php if($subProduct['discount']): ?>
                                         <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
+                                        <br>
                                         <b><?= format_currency($subProduct['discount']); ?></b>
                                     <?php else: ?>
                                         <?= format_currency($subProduct['price']); ?>
