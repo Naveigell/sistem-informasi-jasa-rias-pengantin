@@ -67,6 +67,13 @@ $routes->group('', ['filter' => 'expiredfilter'], function ($routes) {
         $routes->post('products', 'Admin\ProductController::store', ["as" => "admin.products.store"]);
         $routes->delete('products/(:num)', 'Admin\ProductController::destroy/$1', ["as" => "admin.products.destroy"]);
 
+        $routes->get('galleries', 'Admin\GalleryController::index', ["as" => "admin.galleries.index"]);
+        $routes->get('galleries/create', 'Admin\GalleryController::create', ["as" => "admin.galleries.create"]);
+        $routes->get('galleries/(:num)/edit', 'Admin\GalleryController::edit/$1', ["as" => "admin.galleries.edit"]);
+        $routes->put('galleries/(:num)', 'Admin\GalleryController::update/$1', ["as" => "admin.galleries.update"]);
+        $routes->post('galleries', 'Admin\GalleryController::store', ["as" => "admin.galleries.store"]);
+        $routes->delete('galleries/(:num)', 'Admin\GalleryController::destroy/$1', ["as" => "admin.galleries.destroy"]);
+
         $routes->get('wedding-times', 'Admin\WeddingTimeController::index', ["as" => "admin.wedding-times.index"]);
         $routes->get('wedding-times/create', 'Admin\WeddingTimeController::create', ["as" => "admin.wedding-times.create"]);
         $routes->get('wedding-times/(:num)/edit', 'Admin\WeddingTimeController::edit/$1', ["as" => "admin.wedding-times.edit"]);
@@ -76,6 +83,7 @@ $routes->group('', ['filter' => 'expiredfilter'], function ($routes) {
     });
 
     $routes->get('/', 'Member\HomeController::index', ["as" => "member.home"]);
+    $routes->get('/galleries', 'Member\GalleryController::index', ["as" => "member.gallery.index"]);
     $routes->get('/payments', 'Member\PaymentController::index', ["as" => "member.payments.index"]);
     $routes->get('/product/(:num)/sub/(:num)/booking/(:num)/payment', 'Member\PaymentController::edit/$1/$2/$3', ["as" => "member.payments.edit"]);
     $routes->post('/product/(:num)/sub/(:num)/booking/(:num)/payment', 'Member\PaymentController::store/$1/$2/$3', ["as" => "member.payments.store"]);

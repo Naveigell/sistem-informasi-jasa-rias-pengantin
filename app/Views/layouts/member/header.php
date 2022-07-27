@@ -40,6 +40,7 @@
                                 <?php if (session()->get('hasLoggedIn')): ?>
                                     <li><a href="<?= route_to('member.payments.index'); ?>">Pemesanan & Pembayaran</a></li>
                                 <?php endif; ?>
+                                <li><a href="<?= route_to('member.gallery.index'); ?>">Gallery</a></li>
                                 <?php if (session()->has('hasLoggedIn') && session()->get('user')->id): ?>
                                     <li><a href="<?= route_to('logout'); ?>">Logout</a></li>
                                 <?php else: ?>

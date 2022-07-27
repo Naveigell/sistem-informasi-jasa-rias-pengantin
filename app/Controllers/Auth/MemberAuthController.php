@@ -96,6 +96,6 @@ class MemberAuthController extends BaseController
             var_dump($e->getMessage());
         }
 
-        return redirect()->route('member.auth.register.index')->withInput()->with('success', 'Register berhasil, silakan melakukan login');
+        return redirect()->route('member.auth.login.index')->withInput()->with('success', 'Register berhasil, silakan melakukan login');
     }
 }
