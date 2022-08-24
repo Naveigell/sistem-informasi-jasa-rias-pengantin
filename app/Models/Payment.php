@@ -8,7 +8,10 @@ class Payment extends Model
 {
     protected $table = 'payments';
 
-    protected $allowedFields = ['booking_id', 'proof', 'sender_bank', 'sender_account_number', 'sender_name', 'merchant_bank', 'status'];
+    protected $allowedFields = [
+        'booking_id', 'proof', 'sender_bank', 'sender_account_number', 'sender_name', 'merchant_bank', 'status',
+        'created_at',
+    ];
 
     public const STATUS_WAITING_PAYMENT = 'waiting_payment';
     public const STATUS_DOWN_PAYMENT    = 'down_payment';

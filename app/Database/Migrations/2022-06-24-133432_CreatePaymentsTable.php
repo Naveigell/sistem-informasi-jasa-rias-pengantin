@@ -44,6 +44,9 @@ class CreatePaymentsTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
+            'created_at' => [
+                'type' => 'TIMESTAMP',
+            ]
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('booking_id', 'bookings', 'id', 'CASCADE', 'CASCADE');

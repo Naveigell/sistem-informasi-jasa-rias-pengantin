@@ -33,7 +33,7 @@
 
     .banner {
         background-size: 100% 100%;
-        background-repeat: no-repeat;
+        /*background-repeat: no-repeat;*/
         background-position: 100% 100%;
     }
 </style>
@@ -51,7 +51,7 @@
  */
 ?>
 
-    <section class="hero-section">
+    <section class="hero-section" style="padding-bottom: 380px; padding-top: 220px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -60,7 +60,6 @@
                         <p>Dewi Sri Salon & Spa adalah sebuah jasa yang bergerak dibidang
                             kecantikan terlengkap yang terdiri dari perawatan rambut, tubuh hingga tata rias pengantin.
                             Dewi Sri Salon & Spa telah berdiri sejak tahun 2015. </p>
-                        <a href="#" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
@@ -129,7 +128,12 @@
                             <button type="submit">Check Ketersediaan</button>
 
                             <?php if ($available): ?>
-                                <a href="<?= route_to('member.product.detail', $_GET['product_id'], $_GET['sub_product_id']) . '?' . http_build_query($_GET); ?>" class="book-now">Pesan Sekarang!</a>
+                                <?php if (session()->has('hasLoggedIn')): ?>
+                                    <a href="<?= route_to('member.product.detail', $_GET['product_id'], $_GET['sub_product_id']) . '?' . http_build_query($_GET); ?>" class="book-now">Pesan Sekarang!</a>
+                                <?php else: ?>
+                                    <a href="<?= route_to('member.auth.login.index'); ?>" class="book-now" target="_blank">Login</a>
+                                    <span class="text-muted d-block mt-3">* Login sebelum memesan</span>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </form>
                     </div>
@@ -138,6 +142,10 @@
         </div>
         <div class="hero-slider owl-carousel">
             <div class="hs-item set-bg banner" data-setbg="<?= base_url('member/img/banner.jpeg'); ?>"></div>
+<!--            <div class="hs-item set-bg banner" data-setbg="--><?//= base_url('member/img/banner2.jpeg'); ?><!--"></div>-->
+            <div class="hs-item set-bg banner" data-setbg="<?= base_url('member/img/banner3.jpeg'); ?>"></div>
+            <div class="hs-item set-bg banner" data-setbg="<?= base_url('member/img/banner4.jpeg'); ?>"></div>
+<!--            <div class="hs-item set-bg banner" data-setbg="--><?//= base_url('member/img/banner5.jpeg'); ?><!--"></div>-->
         </div>
     </section>
 

@@ -48,6 +48,7 @@ class PaymentController extends BaseController
             "status"     => Payment::STATUS_DOWN_PAYMENT,
             "proof"      => $imageName,
             "booking_id" => $bookingId,
+            "created_at" => date('Y-m-d H:i:s'),
         ]));
 
         (new Booking())->update($bookingId, [

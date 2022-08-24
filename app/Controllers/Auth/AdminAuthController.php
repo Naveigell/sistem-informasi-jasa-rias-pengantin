@@ -44,6 +44,6 @@ class AdminAuthController extends BaseController
         session()->set('user', $user);
         session()->set('hasLoggedIn', true);
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.dashboards.index');
     }
 }

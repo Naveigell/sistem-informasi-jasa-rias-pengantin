@@ -12,8 +12,7 @@
                         </div>
                         <p>Dewi Sri Salon & Spa di dukung dengan anggota tim yang kreatif, bersemangat, dan berpengalaman yang dengan senang hati selalu membantu customer untuk memilih tema riasan saat pernikahan.</p>
                         <div class="fa-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://instagram.com/dewisribaliwedding" target="_blank"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>

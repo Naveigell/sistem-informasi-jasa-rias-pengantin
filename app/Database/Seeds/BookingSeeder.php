@@ -43,6 +43,11 @@ class BookingSeeder extends Seeder
 
             $bookingId = (new Booking())->insert($booking);
 
+            $date     = date_create(date('Y-m-d'));
+            $interval = rand(1, 7);
+
+            date_sub($date, date_interval_create_from_date_string($interval . ' month'));
+
             $payment = [
                 "booking_id"            => $bookingId,
                 "proof"                 => $this->str_random(30) . '.png',
@@ -51,6 +56,7 @@ class BookingSeeder extends Seeder
                 "sender_name"           => $user['name'],
                 "merchant_bank"         => $merchantBanks[array_rand($merchantBanks)],
                 "status"                => $status,
+                "created_at"            => date_format($date, 'Y-m-d H:i:s'),
             ];
 
             (new Payment())->insert($payment);

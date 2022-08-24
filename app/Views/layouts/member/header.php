@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="<?= route_to('member.home'); ?>" class="navbar-brand font-weight-bold text-black-50">
+                        <a href="<?= route_to('member.home'); ?>" class="navbar-brand font-weight-bold" style="color: black;">
                             Dewi Sri Salon & Spa
 <!--                            <img src="--><?//= base_url('member/img/logo.png'); ?><!--" alt="">-->
                         </a>
