@@ -125,6 +125,7 @@
 /**
  * @var array $weddingTimes
  * @var array $products
+ * @var array $vouchers
  * @var boolean $available
  * @var boolean $hasQueryParameters
  */
@@ -360,6 +361,15 @@
                                     <input class="form-control date-input" name="pre_wedding_date" type="text">
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="">Voucher</label>
+                                    <input class="form-control" name="voucher_code" id="voucher_code" type="text">
+                                    <div class="invalid-feedback">
+                                        Voucher tidak valid
+                                    </div>
+                                    <small class="text-dark">* Kosongkan jika tidak punya</small>
+                                </div>
+
                                 <?php if (@$_GET['wedding_time_id']): ?>
                                     <input type="hidden" name="wedding_time_id" value="<?= $_GET['wedding_time_id']; ?>" readonly>
                                 <?php endif; ?>
@@ -386,6 +396,22 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content-script'); ?>
+    <script>
+        let vouchers = <?= json_encode($vouchers) ?>;
+        let voucherField = document.getElementById('voucher_code');
+
+        voucherField.addEventListener('keyup', function (evt) {
+            let hasValidVoucher = vouchers.filter(function (voucher) {
+                return voucher.code === evt.target.value;
+            }).length > 0 || evt.target.value === '';
+
+            if (hasValidVoucher) {
+                $('#voucher_code').removeClass('is-invalid');
+            } else {
+                $('#voucher_code').addClass('is-invalid');
+            }
+        })
+    </script>
     <script>
         let slideIndex = 1;
         showSlides(slideIndex);

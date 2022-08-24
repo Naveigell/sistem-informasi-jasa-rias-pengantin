@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\SubProduct;
+use App\Models\SubProductVoucher;
 use App\Models\WeddingTime;
 
 class PaymentController extends BaseController
@@ -20,12 +21,13 @@ class PaymentController extends BaseController
 
     public function edit($productId, $subProductId, $bookingId)
     {
-        $booking     = (new Booking())->where('product_id', $productId)->where('sub_product_id', $subProductId)->where('user_id', session()->get('user')->id)->first();
+        $booking     = (new Booking())->where('id', $bookingId)->where('product_id', $productId)->where('sub_product_id', $subProductId)->where('user_id', session()->get('user')->id)->first();
         $product     = (new Product())->where('id', $productId)->first();
         $subProduct  = (new SubProduct())->where('id', $subProductId)->where('product_id', $productId)->first();
         $weddingTime = (new WeddingTime())->where('id', $booking['wedding_time_id'])->first();
+        $voucher     = $booking['voucher_id'] ? (new SubProductVoucher())->where('id', $booking['voucher_id'])->first() : null;
 
-        return view('member/pages/payment/form', compact('booking', 'product', 'subProduct', 'weddingTime', 'bookingId'));
+        return view('member/pages/payment/form', compact('booking', 'product', 'subProduct', 'weddingTime', 'voucher', 'bookingId'));
     }
 
     public function store($productId, $subProductId, $bookingId)

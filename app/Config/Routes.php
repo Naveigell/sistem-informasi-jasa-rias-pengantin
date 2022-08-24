@@ -53,6 +53,13 @@ $routes->group('', ['filter' => 'expiredfilter'], function ($routes) {
         $routes->put('products/(:num)/subs/(:num)/medias/(:num)', 'Admin\ProductMediaController::update/$1/$2/$3', ["as" => "admin.product-medias.update"]);
         $routes->delete('products/(:num)/subs/(:num)/medias/(:num)', 'Admin\ProductMediaController::destroy/$1/$2/$3', ["as" => "admin.product-medias.destroy"]);
 
+        $routes->get('products/(:num)/subs/(:num)/vouchers', 'Admin\ProductVoucherController::index/$1/$2', ["as" => "admin.product-vouchers.index"]);
+        $routes->post('products/(:num)/subs/(:num)/vouchers', 'Admin\ProductVoucherController::store/$1/$2', ["as" => "admin.product-vouchers.store"]);
+        $routes->get('products/(:num)/subs/(:num)/vouchers/create', 'Admin\ProductVoucherController::create/$1/$2', ["as" => "admin.product-vouchers.create"]);
+        $routes->get('products/(:num)/subs/(:num)/vouchers/(:num)/edit', 'Admin\ProductVoucherController::edit/$1/$2/$3', ["as" => "admin.product-vouchers.edit"]);
+        $routes->put('products/(:num)/subs/(:num)/vouchers/(:num)', 'Admin\ProductVoucherController::update/$1/$2/$3', ["as" => "admin.product-vouchers.update"]);
+        $routes->delete('products/(:num)/subs/(:num)/vouchers/(:num)', 'Admin\ProductVoucherController::destroy/$1/$2/$3', ["as" => "admin.product-vouchers.destroy"]);
+
         $routes->get('products/(:num)/subs', 'Admin\SubProductController::index/$1', ["as" => "admin.sub-products.index"]);
         $routes->post('products/(:num)/subs', 'Admin\SubProductController::store/$1', ["as" => "admin.sub-products.store"]);
         $routes->get('products/(:num)/subs/create', 'Admin\SubProductController::create/$1', ["as" => "admin.sub-products.create"]);

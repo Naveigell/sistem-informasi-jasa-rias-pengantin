@@ -8,6 +8,7 @@
 
     <?php
         /** @var array $booking */
+        /** @var array $voucher */
         /** @var array $payment */
     ?>
 
@@ -26,13 +27,52 @@
                         <label>Nama Jasa</label>
                         <input type="text" disabled value="<?= $booking['product_name']; ?> - <?= $booking['sub_product_name']; ?>" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label>Harga Jasa</label>
-                        <input type="text" disabled value="<?= $booking['price']; ?>" class="form-control nominal">
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label>Harga Jasa</label>-->
+<!--                        <input type="text" disabled value="--><?//= $booking['price']; ?><!--" class="form-control nominal">-->
+<!--                    </div>-->
+                    <?php if ($booking['discount']): ?>
+                        <div class="form-group">
+                            <label>Harga Jasa</label>
+                            <input type="text" disabled value="<?= $booking['price']; ?>" style="text-decoration: line-through;" class="form-control nominal">
+                        </div>
+
+                        <?php if ($voucher): ?>
+                            <div class="form-group">
+                                <label>Harga Diskon</label>
+                                <input type="text" disabled value="<?= $booking['discount']; ?>" style="text-decoration: line-through;" class="form-control nominal">
+                            </div>
+                            <div class="form-group">
+                                <label>Harga Total</label>
+                                <input type="text" disabled value="<?= $booking['discount'] - $voucher['amount']; ?>" class="form-control nominal">
+                            </div>
+                        <?php else: ?>
+                            <div class="form-group">
+                                <label>Harga Diskon</label>
+                                <input type="text" disabled value="<?= $booking['discount']; ?>" class="form-control nominal">
+                            </div>
+                        <?php endif; ?>
+
+                    <?php else: ?>
+                        <?php if ($voucher): ?>
+                            <div class="form-group">
+                                <label>Harga Jasa</label>
+                                <input type="text" disabled value="<?= $booking['price']; ?>" style="text-decoration: line-through;" class="form-control nominal">
+                            </div>
+                            <div class="form-group">
+                                <label>Harga Total</label>
+                                <input type="text" disabled value="<?= $booking['price'] - $voucher['amount']; ?>" class="form-control nominal">
+                            </div>
+                        <?php else: ?>
+                            <div class="form-group">
+                                <label>Harga Jasa</label>
+                                <input type="text" disabled value="<?= $booking['price']; ?>" class="form-control nominal">
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
                     <div class="form-group">
                         <label>Deskripsi Jasa</label>
-                        <textarea name="" id="" cols="30" rows="10" style="height: 200px; resize: none;" disabled class="form-control"><?= $booking['description']; ?></textarea>
+                        <textarea name="" id="" cols="30" rows="10" style="height: 200px; resize: none;" disabled class="form-control"><?= strip_tags($booking['description']); ?></textarea>
                     </div>
                 </div>
                 <div class="col-6">

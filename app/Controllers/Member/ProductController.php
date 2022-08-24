@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Booking;
 use App\Models\Product;
 use App\Models\SubProduct;
+use App\Models\SubProductVoucher;
 use App\Models\WeddingTime;
 
 class ProductController extends BaseController
@@ -18,6 +19,8 @@ class ProductController extends BaseController
         $products           = (new Product())->findAll();
         $available          = false;
         $hasQueryParameters = false;
+
+        $vouchers           = (new SubProductVoucher())->where('sub_product_id', $subProductId)->findAll();
 
         $weddingDate   = $this->request->getVar('wedding_date');
         $productId     = $this->request->getVar('product_id');
@@ -35,6 +38,6 @@ class ProductController extends BaseController
             $hasQueryParameters = true;
         }
 
-        return view('member/pages/product/index', compact('subProduct', 'product', 'weddingTimes', 'products', 'available', 'hasQueryParameters'));
+        return view('member/pages/product/index', compact('subProduct', 'product', 'weddingTimes', 'products', 'available', 'hasQueryParameters', 'vouchers'));
     }
 }

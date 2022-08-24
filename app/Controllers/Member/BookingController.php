@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\SubProduct;
+use App\Models\SubProductVoucher;
 use App\Models\WeddingTime;
 use CodeIgniter\I18n\Time;
 
@@ -50,9 +51,16 @@ class BookingController extends BaseController
                 "product_id"      => $productId,
                 "wedding_time_id" => $this->request->getVar('wedding_time_id'),
                 "wedding_date"    => $this->request->getVar('wedding_date'),
+                "check"           => 'true',
             ]);
 
-            return redirect()->to(route_to('member.booking.index', $productId, $subProductId) . '?' . $queryString)->withInput()->with('errors', $validator->getErrors());
+            return redirect()->to(route_to('member.product.detail', $productId, $subProductId) . '?' . $queryString)->withInput()->with('errors', $validator->getErrors());
+        }
+
+        $voucher = $this->request->getVar('voucher_code') ?: null;
+
+        if ($voucher) {
+            $voucher = (new SubProductVoucher())->where('code', $voucher)->first();
         }
 
         $bookingId = (new Booking());
@@ -61,6 +69,7 @@ class BookingController extends BaseController
             "payment_status"   => Payment::STATUS_WAITING_PAYMENT,
             "pre_wedding_date" => date('Y-m-d', strtotime($this->request->getVar('pre_wedding_date'))),
             "expired_at"       => Time::now()->addDays(2)->toDateTimeString(),
+            "voucher_id"       => $voucher ? $voucher['id'] : null,
         ]));
 
         return redirect()->to(route_to('member.payments.edit', $productId, $subProductId, $bookingId->getInsertID()))->with('success', 'Pemesanan berhasil dilakukan');

@@ -46,6 +46,7 @@
                         $product    = (new \App\Models\Product())->where('id', $booking['product_id'])->first();
                         $subProduct = (new \App\Models\SubProduct())->where('id', $booking['sub_product_id'])->first();
                         $payment    = (new \App\Models\Payment())->where('booking_id', $booking['id'])->first();
+                        $voucher    = (new \App\Models\SubProductVoucher())->where('id', $booking['voucher_id'])->first();
                     ?>
 
                     <div class="col-lg-4 col-md-6">
@@ -60,10 +61,25 @@
                                 <h2 style="font-size: 25px;">
                                     <?php if($subProduct['discount']): ?>
                                         <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
-                                        <br>
-                                        <b><?= format_currency($subProduct['discount']); ?></b>
+                                        <?php if ($voucher): ?>
+                                            <br>
+                                            <span>Disc : </span><strike class="text-secondary"><?= format_currency($subProduct['discount']); ?></strike> &nbsp;
+                                            <br>
+                                            <span>Voucher : </span><b><?= format_currency($subProduct['discount'] - $voucher['amount']); ?></b>
+                                        <?php else: ?>
+                                            <br>
+                                            <span>Disc : </span><b><?= format_currency($subProduct['discount']); ?></b>
+                                        <?php endif; ?>
                                     <?php else: ?>
-                                        <?= format_currency($subProduct['price']); ?>
+                                        <?php if ($voucher): ?>
+                                            <br>
+                                            <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
+                                            <br>
+                                            <span>Voucher : </span><b><?= format_currency($subProduct['price'] - $voucher['amount']); ?></b>
+                                        <?php else: ?>
+                                            <br>
+                                            <b><?= format_currency($subProduct['price']); ?></b>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </h2>
 

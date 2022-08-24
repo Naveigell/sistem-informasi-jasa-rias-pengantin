@@ -127,6 +127,7 @@
  * @var array $weddingTimes
  * @var array $weddingTime
  * @var array $products
+ * @var array $voucher
  * @var boolean $available
  * @var boolean $hasQueryParameters
  */
@@ -185,9 +186,22 @@
                         <h2 style="font-size: 25px;">
                             <?php if($subProduct['discount']): ?>
                                 <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike> &nbsp;
-                                <b><?= format_currency($subProduct['discount']); ?></b>
+                                <br>
+                                <?php if ($voucher): ?>
+                                    <span>Disc : </span><strike class="text-secondary"><?= format_currency($subProduct['discount']); ?></strike>
+                                    <br>
+                                    <span>Voucher : </span><b><?= format_currency($subProduct['discount'] - $voucher['amount']); ?></b>
+                                <?php else: ?>
+                                    <span>Disc : </span><b><?= format_currency($subProduct['discount']); ?></b>
+                                <?php endif; ?>
                             <?php else: ?>
-                                <?= format_currency($subProduct['price']); ?>
+                                <?php if ($voucher): ?>
+                                    <strike class="text-secondary"><?= format_currency($subProduct['price']); ?></strike>
+                                    <br>
+                                    <span>Voucher : </span><b><?= format_currency($subProduct['price'] - $voucher['amount']); ?></b>
+                                <?php else: ?>
+                                    <b><?= format_currency($subProduct['price']); ?></b>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </h2>
                         <p class="f-para"><?= $subProduct['description']; ?></p>

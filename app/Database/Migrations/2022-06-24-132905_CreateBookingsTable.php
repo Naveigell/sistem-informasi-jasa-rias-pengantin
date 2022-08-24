@@ -68,13 +68,20 @@ class CreateBookingsTable extends Migration
             ],
             'expired_at' => [
                 'type' => 'DATETIME',
-            ]
+            ],
+            'voucher_id' => [
+                'type' => 'BIGINT',
+                'constraint' => 20,
+                'unsigned' => true,
+                'null' => true,
+            ],
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('product_id', 'products', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('sub_product_id', 'sub_products', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('wedding_time_id', 'wedding_times', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('voucher_id', 'sub_product_vouchers', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('bookings');
     }
 
