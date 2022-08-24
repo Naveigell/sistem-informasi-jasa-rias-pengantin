@@ -31,18 +31,18 @@ class Database extends Config
      * @var array
      */
     public $default = [
-        'DSN'      => 'pgsql:host=ec2-3-208-79-113.compute-1.amazonaws.com;port=5432;dbname=dc7f7n4u924hp9;password=38685bbf2bc161c074841ce3b7180f5b339208ad95e14d1a07327b78f88b528a;user=ykgdbbifsgximp',
-        'hostname' => 'ec2-3-208-79-113.compute-1.amazonaws.com',
-        'username' => 'ykgdbbifsgximp',
-        'password' => '38685bbf2bc161c074841ce3b7180f5b339208ad95e14d1a07327b78f88b528a',
-        'database' => 'dc7f7n4u924hp9',
-        'DBDriver' => 'Postgre',
-//        'DSN'      => '',
-//        'hostname' => 'localhost',
-//        'username' => 'root',
-//        'password' => '',
-//        'database' => 'rias_pengantin',
-//        'DBDriver' => 'MySQLi',
+//        'DSN'      => 'pgsql:host=ec2-3-208-79-113.compute-1.amazonaws.com;port=5432;dbname=dc7f7n4u924hp9;password=38685bbf2bc161c074841ce3b7180f5b339208ad95e14d1a07327b78f88b528a;user=ykgdbbifsgximp',
+//        'hostname' => 'ec2-3-208-79-113.compute-1.amazonaws.com',
+//        'username' => 'ykgdbbifsgximp',
+//        'password' => '38685bbf2bc161c074841ce3b7180f5b339208ad95e14d1a07327b78f88b528a',
+//        'database' => 'dc7f7n4u924hp9',
+//        'DBDriver' => 'Postgre',
+        'DSN'      => '',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'rias_pengantin',
+        'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
@@ -53,8 +53,8 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 5432,
-//        'port'     => 3306,
+//        'port'     => 5432,
+        'port'     => 3306,
     ];
 
     /**
