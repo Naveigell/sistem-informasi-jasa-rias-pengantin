@@ -43,6 +43,9 @@ $routes->group('', ['filter' => 'expiredfilter'], function ($routes) {
 
         $routes->get('dashboards', 'Admin\DashboardController::index', ["as" => "admin.dashboards.index"]);
 
+        $routes->get('reports', 'Admin\ReportController::index', ["as" => "admin.reports.index"]);
+        $routes->get('reports/print', 'Admin\ReportController::print', ["as" => "admin.reports.print"]);
+
         $routes->get('bookings', 'Admin\BookingController::index', ["as" => "admin.bookings.index"]);
         $routes->get('bookings/(:num)', 'Admin\BookingController::show/$1', ["as" => "admin.bookings.show"]);
         $routes->put('bookings/(:num)', 'Admin\BookingController::update/$1', ["as" => "admin.bookings.update"]);

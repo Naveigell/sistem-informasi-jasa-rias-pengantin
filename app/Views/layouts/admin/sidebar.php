@@ -16,6 +16,8 @@
             <li><a class="nav-link" href="<?= route_to('admin.bookings.index'); ?>"><i class="fa fa-link"></i> <span>Booking</span></a></li>
             <li class="menu-header">Other</li>
             <li><a class="nav-link" href="<?= route_to('admin.galleries.index'); ?>"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
+            <li class="menu-header">Report</li>
+            <li><a class="nav-link" href="<?= route_to('admin.reports.index'); ?>"><i class="fa fa-print"></i> <span>Laporan</span></a></li>
 <!--            <li class="menu-header">Saran</li>-->
 <!--            <li><a class="nav-link" href="--><?//= route_to('admin.suggestions.index'); ?><!--"><i class="fa fa-envelope"></i> <span>Saran</span></a></li>-->
         </ul>
