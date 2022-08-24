@@ -31,12 +31,12 @@ class Database extends Config
      * @var array
      */
     public $default = [
-        'DSN'      => '',
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => '',
-        'database' => 'rias_pengantin',
-        'DBDriver' => 'MySQLi',
+        'DSN'      => 'pgsql:host=ec2-44-210-36-247.compute-1.amazonaws.com;port=5432;dbname=d8jnta5ng7ov7j',
+        'hostname' => 'ec2-44-210-36-247.compute-1.amazonaws.com',
+        'username' => 'liztolqnovwuyl',
+        'password' => '4702cdf611375fad7ba508a2ebafdc3754d30cc2b38d4ec8300f3f2dba573c94',
+        'database' => 'd8jnta5ng7ov7j',
+        'DBDriver' => 'postgre',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
@@ -47,7 +47,7 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 3306,
+        'port'     => 5432,
     ];
 
     /**
