@@ -37,6 +37,12 @@ class Database extends Config
         'password' => '38685bbf2bc161c074841ce3b7180f5b339208ad95e14d1a07327b78f88b528a',
         'database' => 'dc7f7n4u924hp9',
         'DBDriver' => 'Postgre',
+//        'DSN'      => '',
+//        'hostname' => 'localhost',
+//        'username' => 'root',
+//        'password' => '',
+//        'database' => 'rias_pengantin',
+//        'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
@@ -48,6 +54,7 @@ class Database extends Config
         'strictOn' => false,
         'failover' => [],
         'port'     => 5432,
+//        'port'     => 3306,
     ];
 
     /**
