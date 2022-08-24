@@ -19,6 +19,24 @@
         padding-bottom: 12px;
     }
 </style>
+<style>
+    .banner:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.4);
+        z-index: 10;
+        top: 0;
+    }
+
+    .banner {
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: 100% 100%;
+    }
+</style>
 
 <?= $this->endSection() ?>
 
@@ -38,9 +56,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero-text">
-                        <h1>Sona A Luxury Hotel</h1>
-                        <p>Here are the best hotel booking sites, including recommendations for international
-                            travel and for finding low-priced hotel rooms.</p>
+                        <h1>Dewi Sri Salon & Spa</h1>
+                        <p>Dewi Sri Salon & Spa adalah sebuah jasa yang bergerak dibidang
+                            kecantikan terlengkap yang terdiri dari perawatan rambut, tubuh hingga tata rias pengantin.
+                            Dewi Sri Salon & Spa telah berdiri sejak tahun 2015. </p>
                         <a href="#" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
@@ -118,9 +137,7 @@
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="<?= base_url('member/img/wedding1.jpg'); ?>"></div>
-            <div class="hs-item set-bg" data-setbg="<?= base_url('member/img/wedding2.jpg'); ?>"></div>
-            <div class="hs-item set-bg" data-setbg="<?= base_url('member/img/wedding3.jpg'); ?>"></div>
+            <div class="hs-item set-bg banner" data-setbg="<?= base_url('member/img/banner.jpeg'); ?>"></div>
         </div>
     </section>
 
@@ -168,58 +185,38 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>What We Do</span>
-                        <h2>Discover Our Services</h2>
+                        <span>Services</span>
+                        <h2>Pelayanan Kami Yang Lain</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-6 col-sm-6">
                     <div class="service-item">
-                        <i class="flaticon-036-parking"></i>
-                        <h4>Travel Plan</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
+                        <i class="flaticon-027-mirror"></i>
+                        <h4>Perencanaan pernikahan penuh</h4>
+                        <p>Dewi Sri Salon & Spa sepenuhnya membantu customer sebelum, selama, dan setelah hari pernikahan. </p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-6 col-sm-6">
                     <div class="service-item">
                         <i class="flaticon-033-dinner"></i>
-                        <h4>Catering Service</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
+                        <h4>Catering</h4>
+                        <p>Menyediakan sajian yang terbaik adalah bentuk rasa berterimakasih atas doa - doa yang diberikan oleh kerabat dan tamu undangan. Dewi Sri Salon & Spa menyediakan menu catering yang enak dan bervariasi.</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-6 col-sm-6">
                     <div class="service-item">
-                        <i class="flaticon-026-bed"></i>
-                        <h4>Babysitting</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
+                        <i class="flaticon-022-clock"></i>
+                        <h4>Penyedia Dekorasi</h4>
+                        <p>Dekorasi adalah kebutuhan primer pernikahan untuk membangun suasana perayaan pernikahan yang sakral dan bahagia. Penyedia Dokumentasi.</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-6 col-sm-6">
                     <div class="service-item">
-                        <i class="flaticon-024-towel"></i>
-                        <h4>Laundry</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-044-clock-1"></i>
-                        <h4>Hire Driver</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-012-cocktail"></i>
-                        <h4>Bar & Drink</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
+                        <i class="flaticon-034-camera"></i>
+                        <h4>Fotografer</h4>
+                        <p>Fotografer profesional dan videografer prefesional tersedia untuk mengabadikan momen terindah dalam hidup customer.</p>
                     </div>
                 </div>
             </div>
