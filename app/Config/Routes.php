@@ -107,6 +107,11 @@ $routes->group('', ['filter' => 'expiredfilter'], function ($routes) {
     $routes->get('/register', 'Auth\MemberAuthController::register', ["as" => "member.auth.register.index"]);
     $routes->post('/register', 'Auth\MemberAuthController::doRegister', ["as" => "member.auth.register.store"]);
     $routes->get('/logout', 'Auth\AuthController::logout', ["as" => "logout"]);
+
+    $routes->get('/forget-password', 'Auth\AuthController::forgetPasswordIndex', ["as" => "auth.password.email.index"]);
+    $routes->post('/forget-password', 'Auth\AuthController::forgetPasswordStore', ["as" => "auth.password.email.store"]);
+    $routes->get('/password', 'Auth\AuthController::passwordIndex', ["as" => "auth.password.index"]);
+    $routes->post('/password', 'Auth\AuthController::passwordStore', ["as" => "auth.password.store"]);
 });
 
 /*
