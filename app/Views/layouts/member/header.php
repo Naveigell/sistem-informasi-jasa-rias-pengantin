@@ -7,10 +7,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
-                    <div class="logo">
-                        <a href="<?= route_to('member.home'); ?>" class="navbar-brand font-weight-bold" style="color: black;">
-                            Dewi Sri Salon & Spa
-<!--                            <img src="--><?//= base_url('member/img/logo.png'); ?><!--" alt="">-->
+                    <div class="logo" style="transform: translateY(-20px)">
+                        <a href="<?= route_to('member.home'); ?>" class="navbar-brand font-weight-bold" style="color: #dfa974;">
+<!--                            Dewi Sri Salon & Spa-->
+                            <img src="<?= base_url('member/img/logo.png'); ?>" alt="" style="width: 80px;">
                         </a>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li class="active"><a href="<?= route_to('member.home'); ?>">Home</a></li>
+                                <li class="active"><a href="<?= route_to('member.home'); ?>">Beranda</a></li>
                                 <?php if(session()->get('hasLoggedIn')): ?>
                                     <li>
                                         <a>Jasa</a>
@@ -39,9 +39,9 @@
                                     </li>
                                 <?php endif; ?>
                                 <?php if (session()->get('hasLoggedIn')): ?>
-                                    <li><a href="<?= route_to('member.payments.index'); ?>">Pemesanan & Pembayaran</a></li>
+                                    <li><a href="<?= route_to('member.payments.index'); ?>">Reservasi</a></li>
                                 <?php endif; ?>
-                                <li><a href="<?= route_to('member.gallery.index'); ?>">Gallery</a></li>
+                                <li><a href="<?= route_to('member.gallery.index'); ?>">Galeri</a></li>
                                 <?php if (session()->has('hasLoggedIn') && session()->get('user')->id): ?>
                                     <li><a href="<?= route_to('logout'); ?>">Logout</a></li>
                                 <?php else: ?>

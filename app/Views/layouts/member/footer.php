@@ -6,11 +6,11 @@
                 <div class="col-lg-4">
                     <div class="ft-about">
                         <div class="logo">
-                            <a href="<?= route_to('member.home'); ?>" class="navbar-brand font-weight-bold text-white">
+                            <a href="<?= route_to('member.home'); ?>" class="navbar-brand font-weight-bold text-uppercase" style="color: #dfa974; font-size: 14px; letter-spacing: 3px;">
                                 Dewi Sri Salon & Spa
                             </a>
                         </div>
-                        <p>Dewi Sri Salon & Spa di dukung dengan anggota tim yang kreatif, bersemangat, dan berpengalaman yang dengan senang hati selalu membantu customer untuk memilih tema riasan saat pernikahan.</p>
+                        <p class="text-justify">Dewi Sri Salon & Spa di dukung dengan anggota tim yang kreatif, bersemangat, dan berpengalaman yang dengan senang hati selalu membantu customer untuk memilih tema riasan saat pernikahan.</p>
                         <div class="fa-social">
                             <a href="https://instagram.com/dewisribaliwedding" target="_blank"><i class="fa fa-instagram"></i></a>
                         </div>

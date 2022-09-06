@@ -9,7 +9,7 @@
                     <div class="breadcrumb-text">
                         <h2>Register</h2>
                         <div class="bt-option">
-                            <a href="<?= route_to('member.home'); ?>">Home</a>
+                            <a href="<?= route_to('member.home'); ?>">Beranda</a>
                             <span>Akun</span>
                         </div>
                     </div>

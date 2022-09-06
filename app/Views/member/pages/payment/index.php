@@ -25,10 +25,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Pembayaran dan pemesanan</h2>
+                        <h2>Reservasi</h2>
                         <div class="bt-option">
-                            <a href="<?= route_to('member.home'); ?>">Home</a>
-                            <span>Pembayaran</span>
+                            <a href="<?= route_to('member.home'); ?>">Beranda</a>
+                            <span>Reservasi</span>
                         </div>
                     </div>
                 </div>

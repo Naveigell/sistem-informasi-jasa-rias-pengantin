@@ -92,10 +92,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Gallery</h2>
+                        <h2>Galeri</h2>
                         <div class="bt-option">
-                            <a href="<?= route_to('member.home'); ?>">Home</a>
-                            <span>Gallery</span>
+                            <a href="<?= route_to('member.home'); ?>">Beranda</a>
+                            <span>Galeri</span>
                         </div>
                     </div>
                 </div>
