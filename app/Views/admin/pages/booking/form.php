@@ -143,7 +143,7 @@
                             <input type="hidden" name="_method" value="put">
                             <div class="form-group">
                                 <label for="">Status Pembayaran</label>
-                                <select name="status" id="" class="form-control">
+                                <select name="status" id="" class="form-control" <?= $booking['is_finish'] ? 'disabled' : ''; ?>>
                                     <?php foreach ([\App\Models\Payment::STATUS_WAITING_PAYMENT,
                                                        \App\Models\Payment::STATUS_DOWN_PAYMENT,
                                                        \App\Models\Payment::STATUS_PAID_OFF] as $status): ?>

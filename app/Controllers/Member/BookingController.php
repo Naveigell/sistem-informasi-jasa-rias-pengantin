@@ -38,7 +38,7 @@ class BookingController extends BaseController
             $hasQueryParameters = true;
         }
 
-        return view('member/pages/booking/form', compact('subProduct', 'product', 'weddingTimes', 'products', 'available', 'hasQueryParameters'));
+        return view('member/pages/booking/form', compact('subProduct', 'product', 'weddingTimes', 'products', 'available', 'hasQueryParameters', 'productId', 'subProductId'));
     }
 
     public function store($productId, $subProductId)

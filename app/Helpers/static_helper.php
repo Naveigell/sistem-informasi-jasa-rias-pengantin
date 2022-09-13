@@ -9,3 +9,13 @@ if (!function_exists('shop_information')) {
         ];
     }
 }
+
+if (!function_exists('payment_statuses')) {
+    function payment_statuses() {
+        return [
+            \App\Models\Payment::STATUS_PAID_OFF        => 'sudah lunas',
+            \App\Models\Payment::STATUS_DOWN_PAYMENT    => 'dp',
+            \App\Models\Payment::STATUS_WAITING_PAYMENT => 'menunggu pembayaran',
+        ];
+    }
+}

@@ -142,7 +142,7 @@
                     <h2><?= $product['name']; ?> - <?= $subProduct['name']; ?></h2>
                     <div class="bt-option">
                         <a href="<?= route_to('member.home'); ?>">Beranda</a>
-                        <span>Reservasi</span>
+                        <span>Aktivitas</span>
                     </div>
                 </div>
             </div>

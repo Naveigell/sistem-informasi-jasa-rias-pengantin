@@ -1,7 +1,11 @@
 <?php
     $products = (new \App\Models\Product())->findAll();
 ?>
-
+<style>
+    #member-account-link:after {
+        content: none;
+    }
+</style>
 <header class="header-section">
     <div class="menu-item">
         <div class="container">
@@ -39,11 +43,17 @@
                                     </li>
                                 <?php endif; ?>
                                 <?php if (session()->get('hasLoggedIn')): ?>
-                                    <li><a href="<?= route_to('member.payments.index'); ?>">Reservasi</a></li>
+                                    <li><a href="<?= route_to('member.payments.index'); ?>">Aktivitas</a></li>
                                 <?php endif; ?>
                                 <li><a href="<?= route_to('member.gallery.index'); ?>">Galeri</a></li>
                                 <?php if (session()->has('hasLoggedIn') && session()->get('user')->id): ?>
-                                    <li><a href="<?= route_to('logout'); ?>">Logout</a></li>
+                                    <li>
+                                        <a id="member-account-link"><span style="display: inline-block; border: 1px solid #ebebeb; padding: 5px;"><?= session()->get('user')->email; ?></span></a>
+                                        <ul class="dropdown">
+                                            <li><a href="<?= route_to('member.accounts.index'); ?>">Ganti password</a></li>
+                                            <li><a href="<?= route_to('logout'); ?>">Logout</a></li>
+                                        </ul>
+                                    </li>
                                 <?php else: ?>
                                     <li><a href="<?= route_to('member.auth.login.index'); ?>">Login</a></li>
                                 <?php endif; ?>

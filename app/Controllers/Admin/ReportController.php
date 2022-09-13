@@ -23,13 +23,14 @@ class ReportController extends BaseController
 
     private function incomes()
     {
-        if ($this->request->getVar('month')) {
-            $month = explode('-', $this->request->getVar('month'))[1];
-            $year  = explode('-', $this->request->getVar('month'))[0];
+        if ($this->request->getVar('from_date') && $this->request->getVar('to_date')) {
+
+            $fromDate = $this->request->getVar('from_date');
+            $toDate   = $this->request->getVar('to_date');
 
             $incomes = (new Payment())->where('status', Payment::STATUS_PAID_OFF)
-                ->where('MONTH(created_at)', $month)
-                ->where('YEAR(created_at)', $year)->findAll();
+                ->where('DATE(created_at) >=', $fromDate)
+                ->where('DATE(created_at) <=', $toDate)->findAll();
         } else {
             $incomes = (new Payment())->where('status', Payment::STATUS_PAID_OFF)->findAll();
         }

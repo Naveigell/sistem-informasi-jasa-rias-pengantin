@@ -54,90 +54,90 @@
     <section class="hero-section" style="padding-bottom: 380px; padding-top: 220px;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="hero-text">
+                <div class="col-lg-12">
+                    <div class="hero-text text-center">
                         <h1>Dewi Sri Salon & Spa</h1>
                         <p>Dewi Sri Salon & Spa adalah sebuah jasa yang bergerak dibidang
                             kecantikan terlengkap yang terdiri dari perawatan rambut, tubuh hingga tata rias pengantin.
                             Dewi Sri Salon & Spa telah berdiri sejak tahun 2015. </p>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-                    <div class="booking-form">
-                        <h3>Booking Jasa Rias</h3>
-
-                        <?php if ((empty(@$_GET['wedding_date']) ||
-                                   empty(@$_GET['wedding_time_id']) ||
-                                   empty(@$_GET['product_id']) ||
-                                   empty(@$_GET['sub_product_id'])) &&
-                                   @$_GET['check']): ?>
-
-                            <div class="alert alert-danger">Tolong isi semua field</div>
-
-                        <?php else: ?>
-
-                        <?php endif; ?>
-
-                        <?php if ($available): ?>
-                            <div class="alert alert-success">
-                                Tanggal Dapat Dibooking
-                            </div>
-                        <?php elseif ($hasQueryParameters): ?>
-                            <div class="alert alert-danger">
-                                Tanggal Sudah Terbooking
-                            </div>
-                        <?php endif; ?>
-
-                        <form action="<?= route_to('member.home'); ?>">
-                            <input type="hidden" name="check" value="true">
-                            <div class="check-date">
-                                <label for="date-in">Tanggal Pernikahan</label>
-                                <input type="text" value="<?= array_key_exists('wedding_date', $_GET) ? $_GET['wedding_date'] : ''; ?>" name="wedding_date" class="date-input" id="date-in">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="select-option">
-                                <label for="date-out">Jam Rias</label>
-                                <select id="guest" name="wedding_time_id">
-                                    <option value=""></option>
-                                    <?php foreach ($weddingTimes as $time): ?>
-                                        <option <?= array_key_exists('wedding_time_id', $_GET) ? ($_GET['wedding_time_id'] == $time['id'] ? 'selected' : '') : ''; ?> value="<?= $time['id']; ?>"><?= date('H:i', strtotime($time['wedding_time'])); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="select-option">
-                                <label for="product">Nama Jasa</label>
-                                <select id="product" name="product_id">
-                                    <option value=""></option>
-                                    <?php foreach ($products as $product): ?>
-
-                                        <?php
-                                            $subProduct = (new \App\Models\SubProduct())->where('product_id', $product['id'])->findAll();
-                                        ?>
-
-                                        <option <?= array_key_exists('product_id', $_GET) ? ($_GET['product_id'] == $product['id'] ? 'selected' : '') : ''; ?> data-sub-products='<?= json_encode($subProduct, 1); ?>' value="<?= $product['id']; ?>"><?= $product['name']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="select-option">
-                                <label for="sub-product">Sub Jasa</label>
-                                <select id="sub-product" name="sub_product_id">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-
-                            <button type="submit">Check Ketersediaan</button>
-
-                            <?php if ($available): ?>
-                                <?php if (session()->has('hasLoggedIn')): ?>
-                                    <a href="<?= route_to('member.product.detail', $_GET['product_id'], $_GET['sub_product_id']) . '?' . http_build_query($_GET); ?>" class="book-now">Pesan Sekarang!</a>
-                                <?php else: ?>
-                                    <a href="<?= route_to('member.auth.login.index'); ?>" class="book-now" target="_blank">Login</a>
-                                    <span class="text-muted d-block mt-3">* Login sebelum memesan</span>
-                                <?php endif; ?>
-                            <?php endif; ?>
-                        </form>
-                    </div>
-                </div>
+<!--                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">-->
+<!--                    <div class="booking-form">-->
+<!--                        <h3>Booking Jasa Rias</h3>-->
+<!---->
+<!--                        --><?php //if ((empty(@$_GET['wedding_date']) ||
+//                                   empty(@$_GET['wedding_time_id']) ||
+//                                   empty(@$_GET['product_id']) ||
+//                                   empty(@$_GET['sub_product_id'])) &&
+//                                   @$_GET['check']): ?>
+<!---->
+<!--                            <div class="alert alert-danger">Tolong isi semua field</div>-->
+<!---->
+<!--                        --><?php //else: ?>
+<!---->
+<!--                        --><?php //endif; ?>
+<!---->
+<!--                        --><?php //if ($available): ?>
+<!--                            <div class="alert alert-success">-->
+<!--                                Tanggal Dapat Dibooking-->
+<!--                            </div>-->
+<!--                        --><?php //elseif ($hasQueryParameters): ?>
+<!--                            <div class="alert alert-danger">-->
+<!--                                Tanggal Sudah Terbooking-->
+<!--                            </div>-->
+<!--                        --><?php //endif; ?>
+<!---->
+<!--                        <form action="--><?//= route_to('member.home'); ?><!--">-->
+<!--                            <input type="hidden" name="check" value="true">-->
+<!--                            <div class="check-date">-->
+<!--                                <label for="date-in">Tanggal Pernikahan</label>-->
+<!--                                <input type="text" value="--><?//= array_key_exists('wedding_date', $_GET) ? $_GET['wedding_date'] : ''; ?><!--" name="wedding_date" class="date-input" id="date-in">-->
+<!--                                <i class="icon_calendar"></i>-->
+<!--                            </div>-->
+<!--                            <div class="select-option">-->
+<!--                                <label for="date-out">Jam Rias</label>-->
+<!--                                <select id="guest" name="wedding_time_id">-->
+<!--                                    <option value=""></option>-->
+<!--                                    --><?php //foreach ($weddingTimes as $time): ?>
+<!--                                        <option --><?//= array_key_exists('wedding_time_id', $_GET) ? ($_GET['wedding_time_id'] == $time['id'] ? 'selected' : '') : ''; ?><!-- value="--><?//= $time['id']; ?><!--">--><?//= date('H:i', strtotime($time['wedding_time'])); ?><!--</option>-->
+<!--                                    --><?php //endforeach; ?>
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                            <div class="select-option">-->
+<!--                                <label for="product">Nama Jasa</label>-->
+<!--                                <select id="product" name="product_id">-->
+<!--                                    <option value=""></option>-->
+<!--                                    --><?php //foreach ($products as $product): ?>
+<!---->
+<!--                                        --><?php
+//                                            $subProduct = (new \App\Models\SubProduct())->where('product_id', $product['id'])->findAll();
+//                                        ?>
+<!---->
+<!--                                        <option --><?//= array_key_exists('product_id', $_GET) ? ($_GET['product_id'] == $product['id'] ? 'selected' : '') : ''; ?><!-- data-sub-products='--><?//= json_encode($subProduct, 1); ?><!--' value="--><?//= $product['id']; ?><!--">--><?//= $product['name']; ?><!--</option>-->
+<!--                                    --><?php //endforeach; ?>
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                            <div class="select-option">-->
+<!--                                <label for="sub-product">Sub Jasa</label>-->
+<!--                                <select id="sub-product" name="sub_product_id">-->
+<!--                                    <option value=""></option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!---->
+<!--                            <button type="submit">Check Ketersediaan</button>-->
+<!---->
+<!--                            --><?php //if ($available): ?>
+<!--                                --><?php //if (session()->has('hasLoggedIn')): ?>
+<!--                                    <a href="--><?//= route_to('member.product.detail', $_GET['product_id'], $_GET['sub_product_id']) . '?' . http_build_query($_GET); ?><!--" class="book-now">Pesan Sekarang!</a>-->
+<!--                                --><?php //else: ?>
+<!--                                    <a href="--><?//= route_to('member.auth.login.index'); ?><!--" class="book-now" target="_blank">Login</a>-->
+<!--                                    <span class="text-muted d-block mt-3">* Login sebelum memesan</span>-->
+<!--                                --><?php //endif; ?>
+<!--                            --><?php //endif; ?>
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
         <div class="hero-slider owl-carousel">
@@ -165,7 +165,7 @@
                                     ?>
 
                                     <div class="col-lg-4 col-md-4">
-                                        <div class="room-item">
+                                        <a href="<?= session()->has('hasLoggedIn') ? route_to('member.product.detail', $product['id'], $subProduct['id']) : route_to('member.auth.login.index'); ?>" class="room-item">
                                             <img src="<?= $media ? base_url('/uploads/images/products/' . $media['media']) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'; ?>" alt="">
                                             <div class="ri-text">
                                                 <h4><?= $subProduct['name']; ?> - <?= $product['name']; ?></h4>
@@ -177,7 +177,7 @@
                                                     <span class="badge badge-danger"><?= calculate_discount($subProduct['price'], $subProduct['discount']); ?>%</span>
                                                 </h2>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 <?php endforeach; ?>
                             </div>

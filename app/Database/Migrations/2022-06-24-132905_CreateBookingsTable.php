@@ -69,6 +69,11 @@ class CreateBookingsTable extends Migration
             'expired_at' => [
                 'type' => 'DATETIME',
             ],
+            'is_finish' => [
+                'type' => 'INT',
+                'unsigned' => true,
+                'default' => 0,
+            ],
             'voucher_id' => [
                 'type' => 'BIGINT',
                 'constraint' => 20,

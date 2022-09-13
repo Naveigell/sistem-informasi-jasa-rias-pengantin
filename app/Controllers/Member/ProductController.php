@@ -22,6 +22,9 @@ class ProductController extends BaseController
 
         $vouchers           = (new SubProductVoucher())->where('sub_product_id', $subProductId)->findAll();
 
+        $parameterProductId    = $productId;
+        $parameterSubProductId = $subProductId;
+
         $weddingDate   = $this->request->getVar('wedding_date');
         $productId     = $this->request->getVar('product_id');
         $weddingTimeId = $this->request->getVar('wedding_time_id');
@@ -38,6 +41,6 @@ class ProductController extends BaseController
             $hasQueryParameters = true;
         }
 
-        return view('member/pages/product/index', compact('subProduct', 'product', 'weddingTimes', 'products', 'available', 'hasQueryParameters', 'vouchers'));
+        return view('member/pages/product/index', compact('subProduct', 'product', 'weddingTimes', 'products', 'available', 'hasQueryParameters', 'vouchers', 'parameterProductId', 'parameterSubProductId'));
     }
 }

@@ -119,6 +119,9 @@
 /**
  * @var array $subProduct
  * @var array $product
+ * @var array $productId
+ * @var array $parameterProductId
+ * @var array $parameterSubProductId
  */
 ?>
 <?php
@@ -267,35 +270,17 @@
                             <script>
                                 let routes = [];
                             </script>
-                            <div class="select-option">
-                                <label for="product">Nama Jasa</label>
-                                <select id="product" name="product_id">
-                                    <option value=""></option>
-                                    <?php foreach ($products as $prod): ?>
+                            <input type="hidden" name="product_id" value="<?= $parameterProductId; ?>">
+                            <input type="hidden" name="sub_product_id" value="<?= $parameterSubProductId; ?>">
 
-                                        <?php
-                                            $subProds = (new \App\Models\SubProduct())->where('product_id', $prod['id'])->findAll();
-
-                                            $subProdRoutes = [];
-
-                                            foreach ($subProds as $subProd) {
-                                                $subProdRoutes['id-' . $subProd['id']] = route_to('member.product.detail', $prod['id'], $subProd['id']);
-                                        ?>
-                                        <script>
-                                            routes["<?= 'id-' . $subProd['id']; ?>"] = "<?= route_to('member.product.detail', $prod['id'], $subProd['id']); ?>";
-                                        </script>
-
-                                        <?php } ?>
-
-                                        <option data-urls='<?= json_encode($subProdRoutes, 1); ?>' <?= array_key_exists('product_id', $_GET) ? ($_GET['product_id'] == $prod['id'] ? 'selected' : '') : ''; ?> data-sub-products='<?= json_encode($subProds, 1); ?>' value="<?= $prod['id']; ?>"><?= $prod['name']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                            <div class="form-group">
+                                <label for="">Nama Jasa</label>
+                                <input class="form-control" name="" type="text" disabled value="<?= $product['name']; ?>">
                             </div>
-                            <div class="select-option">
-                                <label for="sub-product">Sub Jasa</label>
-                                <select id="sub-product" name="sub_product_id">
-                                    <option value=""></option>
-                                </select>
+
+                            <div class="form-group">
+                                <label for="">Sub Jasa</label>
+                                <input class="form-control" name="" type="text" disabled value="<?= $subProduct['name']; ?>">
                             </div>
 
                             <button type="submit">Check Harga & Ketersediaan</button>

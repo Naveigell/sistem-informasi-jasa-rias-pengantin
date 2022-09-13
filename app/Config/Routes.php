@@ -49,6 +49,7 @@ $routes->group('', ['filter' => 'expiredfilter'], function ($routes) {
         $routes->get('bookings', 'Admin\BookingController::index', ["as" => "admin.bookings.index"]);
         $routes->get('bookings/(:num)', 'Admin\BookingController::show/$1', ["as" => "admin.bookings.show"]);
         $routes->put('bookings/(:num)', 'Admin\BookingController::update/$1', ["as" => "admin.bookings.update"]);
+        $routes->put('bookings/(:num)/finish', 'Admin\BookingController::finish/$1', ["as" => "admin.bookings.finish"]);
 
         $routes->get('products/(:num)/subs/(:num)/medias', 'Admin\ProductMediaController::index/$1/$2', ["as" => "admin.product-medias.index"]);
         $routes->post('products/(:num)/subs/(:num)/medias', 'Admin\ProductMediaController::store/$1/$2', ["as" => "admin.product-medias.store"]);
@@ -103,6 +104,9 @@ $routes->group('', ['filter' => 'expiredfilter'], function ($routes) {
     $routes->post('/product/(:num)/sub/(:num)/booking', 'Member\BookingController::store/$1/$2', ["as" => "member.booking.store"]);
     $routes->get('/login', 'Auth\MemberAuthController::login', ["as" => "member.auth.login.index"]);
     $routes->post('/login', 'Auth\MemberAuthController::store', ["as" => "member.auth.login.store"]);
+
+    $routes->get('accounts', 'Member\AccountController::index', ["as" => "member.accounts.index"]);
+    $routes->put('accounts/password', 'Member\AccountController::password', ["as" => "member.accounts.password.update"]);
 
     $routes->get('/register', 'Auth\MemberAuthController::register', ["as" => "member.auth.register.index"]);
     $routes->post('/register', 'Auth\MemberAuthController::doRegister', ["as" => "member.auth.register.store"]);

@@ -16,8 +16,12 @@ Laporan Pemasukan
                 <div class="">
                     <form action="<?= route_to('admin.reports.index'); ?>" class="row" method="get">
                         <div class="form-group col-3">
-                            <label for="">Bulan</label>
-                            <input name="month" type="month" class="form-control" value="<?= @$_GET['month'] ? $_GET['month'] : ''; ?>">
+                            <label for="">Dari Tanggal</label>
+                            <input name="from_date" type="date" class="form-control" value="<?= @$_GET['from_date'] ? $_GET['from_date'] : ''; ?>">
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="">Sampai Tanggal</label>
+                            <input name="to_date" type="date" class="form-control" value="<?= @$_GET['to_date'] ? $_GET['to_date'] : ''; ?>">
                         </div>
                         <div class="form-group col-12">
                             <button class="btn btn-primary" type="submit">Filter</button>

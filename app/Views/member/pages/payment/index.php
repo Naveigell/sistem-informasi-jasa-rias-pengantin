@@ -25,10 +25,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Reservasi</h2>
+                        <h2>Aktivitas</h2>
                         <div class="bt-option">
                             <a href="<?= route_to('member.home'); ?>">Beranda</a>
-                            <span>Reservasi</span>
+                            <span>Aktivitas</span>
                         </div>
                     </div>
                 </div>
@@ -57,6 +57,7 @@
                             <img src="<?= $media ? base_url('/uploads/images/products/' . $media['media']) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbeQlsruJMdFTjMK9OkGZY527BXOvbGDWWHg&usqp=CAU'; ?>" alt="">
                             <div class="ri-text">
                                 <h4><?= $product['name']; ?> - <?= $subProduct['name']; ?></h4>
+                                <h6><?= date('d F Y', strtotime($booking['wedding_date'])); ?></h6>
 
                                 <h2 style="font-size: 25px;">
                                     <?php if($subProduct['discount']): ?>

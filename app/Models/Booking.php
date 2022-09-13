@@ -11,7 +11,7 @@ class Booking extends Model
     protected $allowedFields = [
         'user_id', 'product_id', 'sub_product_id', 'name', 'address', 'phone', 'identity_card',
         'wedding_date', 'wedding_time_id', 'pre_wedding_date', 'payment_status', 'is_expired', 'expired_at',
-        'voucher_id',
+        'is_finish', 'voucher_id',
     ];
 
     public const STATUS_WAITING_PAYMENT = 'waiting_payment';
