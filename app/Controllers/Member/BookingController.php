@@ -4,6 +4,7 @@ namespace App\Controllers\Member;
 
 use App\Controllers\BaseController;
 use App\Models\Booking;
+use App\Models\BookingNotification;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\SubProduct;
@@ -71,6 +72,12 @@ class BookingController extends BaseController
             "expired_at"       => Time::now()->addDays(2)->toDateTimeString(),
             "voucher_id"       => $voucher ? $voucher['id'] : null,
         ]));
+
+        (new BookingNotification())->insert([
+            "booking_id" => $bookingId->getInsertID(),
+            "is_read"    => 0,
+            "created_at" => date('Y-m-d'),
+        ]);
 
         return redirect()->to(route_to('member.payments.edit', $productId, $subProductId, $bookingId->getInsertID()))->with('success', 'Pemesanan berhasil dilakukan');
     }

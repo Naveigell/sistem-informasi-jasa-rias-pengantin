@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\Booking;
+use App\Models\BookingNotification;
 use App\Models\Payment;
 use App\Models\SubProductVoucher;
 
@@ -21,6 +22,10 @@ class BookingController extends BaseController
         $booking = (new Booking())->where('bookings.id', $bookingId)->select('wedding_times.*, products.*, sub_products.*, bookings.id AS booking_id')->orderBy('booking_id')->joinWeddingTime()->joinProduct()->joinSubProduct()->first();
         $voucher = $booking['voucher_id'] ? (new SubProductVoucher())->where('id', $booking['voucher_id'])->first() : null;
         $payment = (new Payment())->where('booking_id', $bookingId)->first();
+
+        (new BookingNotification())->builder()->where('booking_id', $bookingId)->update([
+            "is_read" => 1,
+        ]);
 
         return view('admin/pages/booking/form', compact('booking', 'payment', 'voucher'));
     }
