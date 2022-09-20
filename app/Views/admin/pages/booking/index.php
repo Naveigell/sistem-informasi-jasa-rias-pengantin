@@ -46,7 +46,7 @@
                             <td><?= $booking['identity_card']; ?></td>
                             <td><a target="_blank" href="<?= route_to('admin.sub-products.edit', $booking['product_id'], $booking['sub_product_id']); ?>" class="text text-primary"><?= $booking['product_name']; ?> - <?= $booking['sub_product_name']; ?></a></td>
                             <td><?= date('d F Y', strtotime($booking['wedding_date'])); ?> - <?= date('H:i', strtotime($booking['wedding_time'])); ?></td>
-                            <td><?= date('d F Y', strtotime($booking['pre_wedding_date'])); ?></td>
+                            <td><?= $booking['pre_wedding_date'] ? date('d F Y', strtotime($booking['pre_wedding_date'])) : '-'; ?></td>
                             <td><?= render_payment_status($booking['payment_status']); ?></td>
                             <td>
                                 <?php if ($booking['is_expired']): ?>

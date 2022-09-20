@@ -68,7 +68,7 @@ class BookingController extends BaseController
         $bookingId->insert(array_merge($this->request->getVar(), [
             "user_id"          => session()->get('user')->id,
             "payment_status"   => Payment::STATUS_WAITING_PAYMENT,
-            "pre_wedding_date" => date('Y-m-d', strtotime($this->request->getVar('pre_wedding_date'))),
+            "pre_wedding_date" => $this->request->getVar('pre_wedding_date') ? date('Y-m-d', strtotime($this->request->getVar('pre_wedding_date'))) : null,
             "expired_at"       => Time::now()->addDays(2)->toDateTimeString(),
             "voucher_id"       => $voucher ? $voucher['id'] : null,
         ]));
@@ -105,7 +105,7 @@ class BookingController extends BaseController
                 "rules" => "required",
             ],
             "pre_wedding_date" => [
-                "rules" => "required",
+                "rules" => "permit_empty",
             ],
         ]);
 

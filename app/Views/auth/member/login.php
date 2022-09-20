@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
 
-                <form action="<?= route_to('member.auth.login.store'); ?>" style="width: 100%;" method="post">
+                <form class="container" action="<?= route_to('member.auth.login.store'); ?>" style="width: 50%;" method="post">
 
                     <?php if ($errors = session()->getFlashdata('errors')): ?>
                         <div class="alert-danger alert">

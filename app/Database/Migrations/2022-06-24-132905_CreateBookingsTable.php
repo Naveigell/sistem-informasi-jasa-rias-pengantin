@@ -56,6 +56,8 @@ class CreateBookingsTable extends Migration
             ],
             'pre_wedding_date' => [
                 'type' => 'DATETIME',
+                'null' => true,
+                'default' => null,
             ],
             'payment_status' => [
                 'type' => 'VARCHAR',

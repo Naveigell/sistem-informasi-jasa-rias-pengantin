@@ -344,6 +344,7 @@
                                 <div class="form-group">
                                     <label for="">Tanggal Prewedding</label>
                                     <input class="form-control date-input" name="pre_wedding_date" type="text">
+                                    <small class="text-dark">* Kosongkan jika tidak perlu</small>
                                 </div>
 
                                 <div class="form-group">

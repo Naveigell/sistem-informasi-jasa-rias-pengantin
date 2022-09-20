@@ -255,7 +255,7 @@
 
                         <div class="form-group">
                             <label for="">Tanggal Prewedding</label>
-                            <input class="form-control date-input" readonly name="pre_wedding_date" type="text" value="<?= date('d F Y', strtotime($booking['pre_wedding_date'])); ?>">
+                            <input class="form-control date-input" readonly name="pre_wedding_date" type="text" value="<?= $booking['pre_wedding_date'] ? date('d F Y', strtotime($booking['pre_wedding_date'])) : '-'; ?>">
                         </div>
 
                         <hr>

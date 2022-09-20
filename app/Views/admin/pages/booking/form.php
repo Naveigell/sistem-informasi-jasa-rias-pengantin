@@ -97,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         <label>Tanggal Prewedding</label>
-                        <input type="text" disabled value="<?= date('d F Y', strtotime($booking['pre_wedding_date'])); ?>" class="form-control">
+                        <input type="text" disabled value="<?= $booking['pre_wedding_date'] ? date('d F Y', strtotime($booking['pre_wedding_date'])) : '-'; ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Status Pembayaran</label>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label>Status</label>
-                        <input type="text" disabled value="<?= ucwords(str_replace('_', ' ', $payment ? $payment['status'] : '-')); ?>" class="form-control">
+                        <input type="text" disabled value="<?= $payment ? ucwords(payment_statuses()[$payment['status']]) : '-'; ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Bukti Pembayaran</label>
@@ -147,7 +147,7 @@
                                     <?php foreach ([\App\Models\Payment::STATUS_WAITING_PAYMENT,
                                                        \App\Models\Payment::STATUS_DOWN_PAYMENT,
                                                        \App\Models\Payment::STATUS_PAID_OFF] as $status): ?>
-                                        <option <?= $status === $payment['status'] ? 'selected' : ''; ?> value="<?= $status; ?>"><?= ucwords(str_replace('_', ' ', $status)); ?></option>
+                                        <option <?= $status === $payment['status'] ? 'selected' : ''; ?> value="<?= $status; ?>"><?= ucwords(payment_statuses()[$status]); ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
